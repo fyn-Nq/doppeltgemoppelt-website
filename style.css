@@ -622,7 +622,6 @@ a {
 .stat-insta {
     text-decoration: none;
     color: var(--text);
-    background: none !important;
 }
 
 .stat-insta-icon svg {
