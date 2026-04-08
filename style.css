@@ -622,17 +622,15 @@ a {
 .stat-insta {
     text-decoration: none;
     color: var(--text);
-}
-
-.stat-insta-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 1.8rem;
+    background: none !important;
 }
 
 .stat-insta-icon svg {
+    width: 1.8rem;
+    height: 1.8rem;
+    stroke: url(#instaGradient);
     stroke: var(--primary-light);
+    vertical-align: middle;
 }
 
 /* --- Sections --- */
