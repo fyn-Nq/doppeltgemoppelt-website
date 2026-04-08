@@ -1250,8 +1250,16 @@ a {
         padding: 70px 0;
     }
 
+    .section-header {
+        text-align: center;
+    }
+
     .hero-title {
         letter-spacing: -1px;
+    }
+
+    .about-grid {
+        margin: 0 auto;
     }
 
     .episode-card {
@@ -1265,6 +1273,12 @@ a {
         border-right: none;
         border-bottom: 1px solid var(--border);
         font-size: 0.85rem;
+    }
+
+    .hosts-intro {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .hosts-grid {
