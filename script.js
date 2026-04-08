@@ -156,123 +156,45 @@ function closeModal() {
     document.body.style.overflow = '';
 }
 
-// --- RSS Feed Loader ---
+// --- Episode Loader ---
+// Strategy: Load cached episodes.json first (instant), fallback to live RSS
 async function loadEpisodes() {
     const grid = document.getElementById('episodesGrid');
     const countEl = document.getElementById('episodeCount');
 
     try {
-        let response;
-        for (const proxy of CORS_PROXIES) {
-            try {
-                const controller = new AbortController();
-                const timeout = setTimeout(() => controller.abort(), 8000);
-                response = await fetch(proxy + encodeURIComponent(RSS_FEED_URL), {
-                    signal: controller.signal
-                });
-                clearTimeout(timeout);
-                if (response.ok) {
-                    const text = await response.text();
-                    if (text.includes('<item>')) {
-                        response = { ok: true, text: () => Promise.resolve(text) };
-                        break;
-                    }
+        let episodeData = null;
+
+        // Try 1: Load pre-built episodes.json (instant, no CORS needed)
+        try {
+            const jsonResponse = await fetch('/episodes.json');
+            if (jsonResponse.ok) {
+                const data = await jsonResponse.json();
+                if (data.episodes && data.episodes.length > 0) {
+                    episodeData = data.episodes;
+                    const total = data.totalEpisodes || data.episodes.length;
+                    if (countEl) countEl.textContent = (total - 1) + '+';
+                    console.log(`Loaded ${data.episodes.length} episodes from cache (fetched: ${data.fetchedAt})`);
                 }
-                response = null;
-            } catch (e) {
-                response = null;
-                continue;
             }
-        }
-        if (!response || !response.ok) throw new Error('Feed nicht erreichbar');
-
-        const text = await response.text();
-        const parser = new DOMParser();
-        const xml = parser.parseFromString(text, 'text/xml');
-
-        const items = xml.querySelectorAll('item');
-        const totalEpisodes = items.length;
-
-        // Update episode count in hero stats
-        if (countEl) {
-            countEl.textContent = (totalEpisodes - 1) + '+';
+        } catch (e) {
+            console.log('No cached episodes.json, falling back to live RSS...');
         }
 
-        // Sort by pubDate descending (newest first) to guarantee order
-        const allEpisodes = Array.from(items).sort((a, b) => {
-            const dateA = new Date(a.querySelector('pubDate')?.textContent || 0);
-            const dateB = new Date(b.querySelector('pubDate')?.textContent || 0);
-            return dateB - dateA;
-        });
+        // Try 2: Fallback to live RSS via CORS proxy
+        if (!episodeData) {
+            episodeData = await fetchLiveRSS(countEl);
+        }
 
-        // Build episode cards
-        const episodes = allEpisodes.slice(0, EPISODES_TO_SHOW);
-        grid.innerHTML = '';
+        if (!episodeData || episodeData.length === 0) {
+            throw new Error('Keine Episoden gefunden');
+        }
 
-        episodes.forEach((item, index) => {
-            const title = item.querySelector('title')?.textContent || 'Unbekannte Episode';
-            const pubDate = item.querySelector('pubDate')?.textContent;
-            const description = item.querySelector('description')?.textContent || '';
-            const episodeNum = totalEpisodes - index;
-
-            // Extract episode number from title if present (e.g. "Körperphänomene 071")
-            const numMatch = title.match(/(\d{2,3})$/);
-            const displayNum = numMatch ? `#${numMatch[1]}` : `#${String(episodeNum).padStart(3, '0')}`;
-            const numStr = numMatch ? numMatch[1] : String(episodeNum).padStart(3, '0');
-
-            // Clean description (strip HTML)
-            const cleanDesc = stripHtml(description);
-            const shortDesc = cleanDesc.length > 150 ? cleanDesc.substring(0, 150) + '...' : cleanDesc;
-
-            // Format date
-            const formattedDate = formatDate(pubDate);
-
-            // Detect tag from title + description
-            const tag = detectTag(title, cleanDesc);
-
-            // Clean title (remove episode number from end)
-            const cleanTitle = title.replace(/\s*\d{2,3}$/, '');
-
-            const card = document.createElement('article');
-            card.className = 'episode-card reveal';
-            card.style.transitionDelay = `${index * 0.1}s`;
-            card.dataset.episode = episodeNum;
-
-            card.innerHTML = `
-                <div class="episode-number">${displayNum}</div>
-                <div class="episode-content">
-                    <div class="episode-meta">
-                        <span class="episode-date">${formattedDate}</span>
-                        ${tag ? `<span class="episode-tag ${tag.class}">${tag.label}</span>` : ''}
-                    </div>
-                    <h3 class="episode-title">${escapeHtml(cleanTitle)}</h3>
-                    <p class="episode-desc">${escapeHtml(shortDesc)}</p>
-                    <button class="episode-play" data-title="${escapeAttr(title)}" data-num="${numStr}">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-                        Anh&ouml;ren
-                    </button>
-                </div>
-            `;
-
-            grid.appendChild(card);
-        });
-
-        // Attach click handlers to play buttons
-        grid.querySelectorAll('.episode-play').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                const title = btn.dataset.title;
-                const num = btn.dataset.num;
-                openModal(title, num);
-            });
-        });
-
-        // Re-init animations for new cards
-        initScrollReveal();
-        initEpisodeTilt();
+        // Render episodes
+        renderEpisodes(grid, episodeData);
 
     } catch (error) {
-        console.error('RSS Feed Error:', error);
+        console.error('Episode Load Error:', error);
         grid.innerHTML = `
             <div class="episodes-error">
                 <p>Episoden konnten nicht geladen werden.</p>
@@ -283,6 +205,99 @@ async function loadEpisodes() {
             </div>
         `;
     }
+}
+
+// Fetch live RSS as fallback
+async function fetchLiveRSS(countEl) {
+    let response;
+    for (const proxy of CORS_PROXIES) {
+        try {
+            const controller = new AbortController();
+            const timeout = setTimeout(() => controller.abort(), 8000);
+            response = await fetch(proxy + encodeURIComponent(RSS_FEED_URL), {
+                signal: controller.signal
+            });
+            clearTimeout(timeout);
+            if (response.ok) {
+                const text = await response.text();
+                if (text.includes('<item>')) {
+                    const parser = new DOMParser();
+                    const xml = parser.parseFromString(text, 'text/xml');
+                    const items = xml.querySelectorAll('item');
+                    const totalEpisodes = items.length;
+
+                    if (countEl) countEl.textContent = (totalEpisodes - 1) + '+';
+
+                    // Convert XML items to plain objects and sort
+                    const episodes = Array.from(items).map(item => ({
+                        title: item.querySelector('title')?.textContent || '',
+                        pubDate: item.querySelector('pubDate')?.textContent || '',
+                        description: item.querySelector('description')?.textContent || '',
+                        link: item.querySelector('link')?.textContent || ''
+                    })).sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
+
+                    console.log(`Loaded ${episodes.length} episodes from live RSS`);
+                    return episodes;
+                }
+            }
+        } catch (e) {
+            continue;
+        }
+    }
+    return null;
+}
+
+// Render episode cards from data array
+function renderEpisodes(grid, episodes) {
+    const total = episodes.length;
+    const toShow = episodes.slice(0, EPISODES_TO_SHOW);
+    grid.innerHTML = '';
+
+    toShow.forEach((ep, index) => {
+        const title = ep.title || 'Unbekannte Episode';
+        const cleanDesc = stripHtml(ep.description || '');
+        const shortDesc = cleanDesc.length > 150 ? cleanDesc.substring(0, 150) + '...' : cleanDesc;
+        const formattedDate = formatDate(ep.pubDate);
+        const tag = detectTag(title, cleanDesc);
+        const cleanTitle = title.replace(/\s*\d{2,3}$/, '');
+
+        const numMatch = title.match(/(\d{2,3})$/);
+        const displayNum = numMatch ? `#${numMatch[1]}` : `#${String(total - index).padStart(3, '0')}`;
+        const numStr = numMatch ? numMatch[1] : String(total - index).padStart(3, '0');
+
+        const card = document.createElement('article');
+        card.className = 'episode-card reveal';
+        card.style.transitionDelay = `${index * 0.1}s`;
+
+        card.innerHTML = `
+            <div class="episode-number">${displayNum}</div>
+            <div class="episode-content">
+                <div class="episode-meta">
+                    <span class="episode-date">${formattedDate}</span>
+                    ${tag ? `<span class="episode-tag ${tag.class}">${tag.label}</span>` : ''}
+                </div>
+                <h3 class="episode-title">${escapeHtml(cleanTitle)}</h3>
+                <p class="episode-desc">${escapeHtml(shortDesc)}</p>
+                <button class="episode-play" data-title="${escapeAttr(title)}" data-num="${numStr}">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                    Anh&ouml;ren
+                </button>
+            </div>
+        `;
+
+        grid.appendChild(card);
+    });
+
+    // Attach click handlers
+    grid.querySelectorAll('.episode-play').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            openModal(btn.dataset.title, btn.dataset.num);
+        });
+    });
+
+    initScrollReveal();
+    initEpisodeTilt();
 }
 
 // --- Helper Functions ---
