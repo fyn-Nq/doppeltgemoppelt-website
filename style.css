@@ -865,6 +865,17 @@ a {
 }
 
 /* --- Hosts Section --- */
+.hosts-intro {
+    max-width: 600px;
+    margin-bottom: 40px;
+}
+
+.hosts-intro p {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+}
+
 .hosts-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
