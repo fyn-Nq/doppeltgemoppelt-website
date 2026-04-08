@@ -195,7 +195,7 @@ async function loadEpisodes() {
 
         // Update episode count in hero stats
         if (countEl) {
-            countEl.textContent = totalEpisodes + '+';
+            countEl.textContent = totalEpisodes;
         }
 
         // Sort by pubDate descending (newest first) to guarantee order
