@@ -589,6 +589,48 @@ a {
     100% { top: 40px; }
 }
 
+/* --- Section Dividers --- */
+.section-divider {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+    position: relative;
+    z-index: 1;
+}
+
+.divider-line {
+    width: 2px;
+    height: 50px;
+    background: var(--border);
+    border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+}
+
+.divider-line::after {
+    content: '';
+    position: absolute;
+    top: -50px;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background: var(--gradient-primary);
+    animation: scrollDown 2.5s ease-in-out infinite;
+}
+
+/* --- Instagram Stat --- */
+.stat-insta {
+    text-decoration: none;
+    color: var(--text);
+}
+
+.stat-icon {
+    color: var(--primary-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 /* --- Sections --- */
 .section {
     position: relative;
