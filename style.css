@@ -624,11 +624,9 @@ a {
     color: var(--text);
 }
 
-.stat-insta .stat-number {
-    color: var(--primary-light);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.stat-insta .stat-number svg {
+    display: block;
+    stroke: var(--primary-light);
 }
 
 /* --- Sections --- */
