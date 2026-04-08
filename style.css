@@ -303,7 +303,6 @@ a {
     max-width: 1200px;
     margin: 0 auto;
     gap: 60px;
-    overflow: hidden;
 }
 
 .hero-content {
