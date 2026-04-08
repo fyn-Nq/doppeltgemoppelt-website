@@ -624,7 +624,7 @@ a {
     color: var(--text);
 }
 
-.stat-icon {
+.stat-insta .stat-number {
     color: var(--primary-light);
     display: flex;
     align-items: center;
