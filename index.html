@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doppeltgemoppelt - Der Podcast mit Leonie & Nica</title>
+    <meta name="description" content="Doppeltgemoppelt - Der Podcast, in dem Leonie und Nica alles doppelt aufrollen, was KI oder spannende Menschen ihnen vor die Nase setzen.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=3">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="#" class="nav-logo">
+                <span class="logo-icon">DG</span>
+                <span class="logo-text">doppeltgemoppelt</span>
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="#about">&Uuml;ber uns</a>
+                <a href="#episodes">Episoden</a>
+                <a href="#hosts">Hosts</a>
+                <a href="#listen">Reinh&ouml;ren</a>
+            </div>
+            <button class="nav-toggle" id="navToggle" aria-label="Men&uuml;">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#about" class="mobile-link">&Uuml;ber uns</a>
+        <a href="#episodes" class="mobile-link">Episoden</a>
+        <a href="#hosts" class="mobile-link">Hosts</a>
+        <a href="#listen" class="mobile-link">Reinh&ouml;ren</a>
+    </div>
+
+    <!-- Listening Modal -->
+    <div class="modal-overlay" id="listenModal">
+        <div class="modal">
+            <button class="modal-close" id="modalClose" aria-label="Schlie&szlig;en">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+            <h3 class="modal-title" id="modalTitle">Episode anh&ouml;ren</h3>
+            <p class="modal-subtitle">W&auml;hle eine Plattform:</p>
+            <div class="modal-options" id="modalListenSection">
+                <a href="#" id="modalSpotify" target="_blank" class="modal-option spotify">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+                    <span>Spotify</span>
+                </a>
+                <a href="#" id="modalApple" target="_blank" class="modal-option apple">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                    <span>Apple Podcasts</span>
+                </a>
+                <a href="#" id="modalH2" target="_blank" class="modal-option h2radio">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="2"/><path d="M16.24 7.76a6 6 0 0 1 0 8.49m-8.48-.01a6 6 0 0 1 0-8.49m11.31-2.82a10 10 0 0 1 0 14.14m-14.14 0a10 10 0 0 1 0-14.14"/></svg>
+                    <span>h2 Radio</span>
+                </a>
+            </div>
+            <!-- Review options (hidden by default, shown when clicking stars) -->
+            <div class="modal-review-section modal-options" id="modalReviewSection" style="display:none;">
+                <a href="https://open.spotify.com/show/4ZY12xj8WgAdOBHCcyFTaV" target="_blank" class="modal-option review">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    <span>Bewerten</span>
+                </a>
+                <a href="https://open.spotify.com/show/4ZY12xj8WgAdOBHCcyFTaV" target="_blank" class="modal-option review">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                    <span>Rezensionen lesen</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <header class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-badge">Podcast</div>
+            <h1 class="hero-title">
+                <span class="title-line">Doppelt</span>
+                <span class="title-line title-accent">Gemoppelt</span>
+            </h1>
+            <p class="hero-subtitle">
+                Der Podcast, in dem <strong>Leonie &amp; Nica</strong> alles doppelt aufrollen &mdash;
+                von Themen, die KI ausspuckt, bis zu Stories von spannenden Menschen.
+                Plus: jede Menge pers&ouml;nliche Anekdoten.
+            </p>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number" id="episodeCount">71+</span>
+                    <span class="stat-label">Episoden</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat stat-clickable" id="statStars" role="button" tabindex="0" onclick="openReviewModal()">
+                    <span class="stat-number">4.9 &#9733;</span>
+                    <span class="stat-label">Sterne</span>
+                </div>
+            </div>
+            <div class="hero-actions">
+                <a href="https://open.spotify.com/show/4ZY12xj8WgAdOBHCcyFTaV" target="_blank" class="btn btn-primary">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+                    Auf Spotify h&ouml;ren
+                </a>
+                <a href="#episodes" class="btn btn-secondary">Alle Episoden</a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="podcast-cover">
+                <img src="https://d3t3ozftmdmh3i.cloudfront.net/staging/podcast_uploaded_nologo/42547786/42547786-1744534684687-b5af5e9778671.jpg" alt="Doppeltgemoppelt Podcast Cover" class="cover-img" id="coverImg">
+                <div class="equalizer">
+                    <span></span><span></span><span></span><span></span><span></span>
+                    <span></span><span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+        <!-- Hero background image (blurred cover) -->
+        <div class="hero-bg-image" aria-hidden="true"></div>
+        <div class="scroll-indicator">
+            <div class="scroll-line"></div>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section class="section about" id="about">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">&Uuml;ber uns</span>
+                <h2 class="section-title">Alles doppelt. <br>Alles ehrlich.</h2>
+            </div>
+            <div class="about-grid">
+                <div class="about-card">
+                    <div class="about-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>
+                    </div>
+                    <h3>Der Podcast</h3>
+                    <p>LiGr&uuml; :) Wir sind Leonie und Nica, und wir recherchieren und quatschen &uuml;ber alles, was uns die KI oder spannende Menschen mit coolen Interessen vorsetzen. Nat&uuml;rlich bleiben dabei auch Schwenks aus dem Leben nicht auf der Strecke.</p>
+                </div>
+                <div class="about-card">
+                    <div class="about-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                    </div>
+                    <h3>Die Themen</h3>
+                    <p>Alles nat&uuml;rlich doppeltgemoppelt &mdash; von True Crime &uuml;ber Wissenschaft und Kultur bis hin zu Lifestyle und Digital. Kein Thema ist zu wild, um es doppelt aufzurollen, und ihr seid mit dabei!</p>
+                </div>
+                <div class="about-card">
+                    <div class="about-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    </div>
+                    <h3>Die Community</h3>
+                    <p>Viel Spa&szlig; beim Anh&ouml;ren &lt;3 Und wenn ihr nicht genug bekommt, schaut doch mal bei Instagram vorbei unter <a href="https://www.instagram.com/doppeltgemoppelt.podcast/" target="_blank" style="color: var(--primary-light);">@doppeltgemoppelt.podcast</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Episodes Section -->
+    <section class="section episodes" id="episodes">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Neueste Folgen</span>
+                <h2 class="section-title">Direkt aus dem Studio</h2>
+            </div>
+            <div class="episodes-grid" id="episodesGrid">
+                <!-- Episodes loaded dynamically from RSS feed -->
+                <div class="episodes-loading">
+                    <div class="loading-spinner"></div>
+                    <p>Episoden werden geladen...</p>
+                </div>
+            </div>
+            <div class="episodes-cta">
+                <a href="https://open.spotify.com/show/4ZY12xj8WgAdOBHCcyFTaV" target="_blank" class="btn btn-outline">
+                    Alle 71+ Episoden auf Spotify
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hosts Section -->
+    <section class="section hosts" id="hosts">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Die Hosts</span>
+                <h2 class="section-title">Doppelt h&auml;lt besser.</h2>
+            </div>
+            <div class="hosts-grid">
+                <div class="host-card">
+                    <div class="host-avatar">
+                        <div class="avatar-placeholder">L</div>
+                    </div>
+                    <h3>Leonie</h3>
+                    <p>Eine H&auml;lfte des Doppelten. Bringt die Recherche-Energie und sorgt daf&uuml;r, dass kein Thema ungedreht bleibt.</p>
+                </div>
+                <div class="host-card">
+                    <div class="host-avatar">
+                        <div class="avatar-placeholder">N</div>
+                    </div>
+                    <h3>Nica</h3>
+                    <p>Die andere H&auml;lfte. Liefert die pers&ouml;nlichen Anekdoten und den perfekten Kontrast zum Deep Dive.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Listen Section -->
+    <section class="section listen" id="listen">
+        <div class="container">
+            <div class="listen-card">
+                <div class="listen-content">
+                    <span class="section-tag">Jetzt reinh&ouml;ren</span>
+                    <h2 class="section-title">&Uuml;berall wo es Podcasts gibt.</h2>
+                    <p class="listen-desc">Abonniere Doppeltgemoppelt auf deiner Lieblingsplattform und verpasse keine Folge.</p>
+                    <div class="platform-links">
+                        <a href="https://open.spotify.com/show/4ZY12xj8WgAdOBHCcyFTaV" target="_blank" class="platform-btn spotify">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+                            Spotify
+                        </a>
+                        <a href="https://podcasts.apple.com/us/podcast/doppeltgemoppelt/id1807094864" target="_blank" class="platform-btn apple">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                            Apple Podcasts
+                        </a>
+                        <a href="https://www.h2radio.de" target="_blank" class="platform-btn h2radio">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="2"/><path d="M16.24 7.76a6 6 0 0 1 0 8.49m-8.48-.01a6 6 0 0 1 0-8.49m11.31-2.82a10 10 0 0 1 0 14.14m-14.14 0a10 10 0 0 1 0-14.14"/></svg>
+                            h2 Radio
+                        </a>
+                    </div>
+                </div>
+                <div class="listen-visual">
+                    <div class="sound-wave">
+                        <span></span><span></span><span></span><span></span><span></span>
+                        <span></span><span></span><span></span><span></span><span></span>
+                        <span></span><span></span><span></span><span></span><span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-inner">
+                <div class="footer-brand">
+                    <span class="logo-icon">DG</span>
+                    <span>doppeltgemoppelt</span>
+                </div>
+                <div class="footer-social">
+                    <a href="https://www.instagram.com/doppeltgemoppelt.podcast/" target="_blank" class="social-link" aria-label="Instagram">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                    </a>
+                    <a href="https://open.spotify.com/show/4ZY12xj8WgAdOBHCcyFTaV" target="_blank" class="social-link" aria-label="Spotify">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+                    </a>
+                </div>
+                <div class="footer-copy">
+                    &copy; 2026 Doppeltgemoppelt. Alle Rechte vorbehalten.
+                    <br><span class="footer-credit">made by fynn</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js?v=6"></script>
+</body>
+</html>
