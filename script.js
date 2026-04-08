@@ -4,9 +4,11 @@
 
 const RSS_FEED_URL = 'https://anchor.fm/s/fe335b68/podcast/rss';
 const CORS_PROXIES = [
-    'https://corsproxy.io/?',
     'https://api.allorigins.win/raw?url=',
-    'https://api.codetabs.com/v1/proxy?quest='
+    'https://corsproxy.io/?',
+    'https://api.codetabs.com/v1/proxy?quest=',
+    'https://cors-anywhere.herokuapp.com/',
+    'https://thingproxy.freeboard.io/fetch/'
 ];
 const EPISODES_TO_SHOW = 6;
 
@@ -163,9 +165,22 @@ async function loadEpisodes() {
         let response;
         for (const proxy of CORS_PROXIES) {
             try {
-                response = await fetch(proxy + encodeURIComponent(RSS_FEED_URL));
-                if (response.ok) break;
+                const controller = new AbortController();
+                const timeout = setTimeout(() => controller.abort(), 8000);
+                response = await fetch(proxy + encodeURIComponent(RSS_FEED_URL), {
+                    signal: controller.signal
+                });
+                clearTimeout(timeout);
+                if (response.ok) {
+                    const text = await response.text();
+                    if (text.includes('<item>')) {
+                        response = { ok: true, text: () => Promise.resolve(text) };
+                        break;
+                    }
+                }
+                response = null;
             } catch (e) {
+                response = null;
                 continue;
             }
         }
