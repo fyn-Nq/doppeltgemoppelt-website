@@ -624,8 +624,14 @@ a {
     color: var(--text);
 }
 
-.stat-insta .stat-number svg {
-    display: block;
+.stat-insta-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 1.8rem;
+}
+
+.stat-insta-icon svg {
     stroke: var(--primary-light);
 }
 
