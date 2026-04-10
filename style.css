@@ -16,17 +16,17 @@
     --primary-dark: #3D5C3D;
     --accent: #C4A86A;
     --accent-light: #D4BE8A;
-    --bg: #1F1F18;
-    --bg-card: #2A2A20;
-    --bg-card-hover: #353528;
-    --surface: #2F2F24;
-    --text: #F2EFE6;
-    --text-muted: #B5B09A;
-    --text-dim: #7A7768;
-    --border: rgba(196, 168, 106, 0.12);
-    --border-hover: rgba(196, 168, 106, 0.25);
-    --gradient-primary: linear-gradient(135deg, #5A7A5A, #7CA67C, #A8C4A0);
-    --gradient-warm: linear-gradient(135deg, #C4A86A, #D4BE8A);
+    --bg: #2C2A24;
+    --bg-card: #36342C;
+    --bg-card-hover: #403E34;
+    --surface: #3A382F;
+    --text: #F5F2E8;
+    --text-muted: #C4BFA8;
+    --text-dim: #908A78;
+    --border: rgba(196, 168, 106, 0.15);
+    --border-hover: rgba(196, 168, 106, 0.3);
+    --gradient-primary: linear-gradient(135deg, #6B8F6B, #8DB88D, #C4A86A);
+    --gradient-warm: linear-gradient(135deg, #D4BE8A, #C4A86A);
     --gradient-card: linear-gradient(145deg, rgba(90, 122, 90, 0.1), rgba(124, 166, 124, 0.05));
     --radius: 16px;
     --radius-sm: 10px;
@@ -91,7 +91,7 @@ a {
 .blob-1 {
     width: 600px;
     height: 600px;
-    background: #3D5C3D;
+    background: #5A7A50;
     top: -200px;
     right: -100px;
     animation-delay: 0s;
@@ -100,7 +100,7 @@ a {
 .blob-2 {
     width: 500px;
     height: 500px;
-    background: #5A7A3A;
+    background: #7A8A50;
     bottom: -150px;
     left: -100px;
     animation-delay: -7s;
@@ -109,12 +109,12 @@ a {
 .blob-3 {
     width: 400px;
     height: 400px;
-    background: #8A7A50;
+    background: #A09060;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     animation-delay: -14s;
-    opacity: 0.25;
+    opacity: 0.3;
 }
 
 @keyframes blobFloat {
@@ -137,7 +137,7 @@ a {
 }
 
 .nav.scrolled {
-    background: rgba(31, 31, 24, 0.92);
+    background: rgba(44, 42, 36, 0.92);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border);
@@ -254,7 +254,7 @@ a {
     position: fixed;
     inset: 0;
     z-index: 999;
-    background: rgba(31, 31, 24, 0.97);
+    background: rgba(44, 42, 36, 0.97);
     backdrop-filter: blur(30px);
     flex-direction: column;
     align-items: center;
@@ -347,6 +347,10 @@ a {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+}
+
+.title-indent {
+    padding-left: 1.5em;
 }
 
 .hero-subtitle {
