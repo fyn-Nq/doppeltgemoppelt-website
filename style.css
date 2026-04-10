@@ -17,14 +17,14 @@
     --accent: #D4A843;
     --accent-light: #E8C76A;
     --bg: #5C5850;
-    --bg-card: #686458;
-    --bg-card-hover: #747064;
-    --surface: #6E6A5E;
+    --bg-card: #4E4B40;
+    --bg-card-hover: #5A5748;
+    --surface: #524F44;
     --text: #FAF8F0;
     --text-muted: #D4CEB8;
     --text-dim: #A8A290;
-    --border: rgba(212, 168, 67, 0.18);
-    --border-hover: rgba(212, 168, 67, 0.35);
+    --border: rgba(212, 168, 67, 0.25);
+    --border-hover: rgba(212, 168, 67, 0.45);
     --gradient-primary: linear-gradient(135deg, #4A8C5E, #6AB87A, #D4A843);
     --gradient-warm: linear-gradient(135deg, #E8C76A, #D4A843);
     --gradient-card: linear-gradient(145deg, rgba(74, 140, 94, 0.12), rgba(106, 184, 122, 0.06));
@@ -830,25 +830,25 @@ a {
     font-weight: 600;
     padding: 3px 10px;
     border-radius: 100px;
-    background: rgba(74, 140, 94, 0.2);
+    background: rgba(74, 140, 94, 0.3);
     color: var(--primary-light);
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
 
 .tag-crime {
-    background: rgba(220, 80, 70, 0.2);
-    color: #E8A090;
+    background: rgba(220, 80, 70, 0.3);
+    color: #F0887A;
 }
 
 .tag-life {
-    background: rgba(212, 168, 67, 0.25);
-    color: #E8C76A;
+    background: rgba(212, 168, 67, 0.35);
+    color: #F0D060;
 }
 
 .tag-culture {
-    background: rgba(74, 140, 94, 0.25);
-    color: #7CD498;
+    background: rgba(74, 160, 94, 0.35);
+    color: #60E890;
 }
 
 .episode-title {
@@ -914,13 +914,13 @@ a {
 }
 
 .tag-science {
-    background: rgba(80, 170, 120, 0.25);
-    color: #70D4A0;
+    background: rgba(80, 180, 120, 0.35);
+    color: #50E890;
 }
 
 .tag-digital {
-    background: rgba(80, 150, 210, 0.2);
-    color: #70B8E8;
+    background: rgba(80, 150, 220, 0.3);
+    color: #60C0F0;
 }
 
 .episodes-cta {
