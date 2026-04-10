@@ -11,23 +11,23 @@
 }
 
 :root {
-    --primary: #5A7A5A;
-    --primary-light: #7CA67C;
-    --primary-dark: #3D5C3D;
-    --accent: #C4A86A;
-    --accent-light: #D4BE8A;
-    --bg: #2C2A24;
-    --bg-card: #36342C;
-    --bg-card-hover: #403E34;
-    --surface: #3A382F;
-    --text: #F5F2E8;
-    --text-muted: #C4BFA8;
-    --text-dim: #908A78;
-    --border: rgba(196, 168, 106, 0.15);
-    --border-hover: rgba(196, 168, 106, 0.3);
-    --gradient-primary: linear-gradient(135deg, #6B8F6B, #8DB88D, #C4A86A);
-    --gradient-warm: linear-gradient(135deg, #D4BE8A, #C4A86A);
-    --gradient-card: linear-gradient(145deg, rgba(90, 122, 90, 0.1), rgba(124, 166, 124, 0.05));
+    --primary: #4A8C5E;
+    --primary-light: #6AB87A;
+    --primary-dark: #357048;
+    --accent: #D4A843;
+    --accent-light: #E8C76A;
+    --bg: #3A3830;
+    --bg-card: #46443A;
+    --bg-card-hover: #524F44;
+    --surface: #4C4A3F;
+    --text: #FAF8F0;
+    --text-muted: #D4CEB8;
+    --text-dim: #A8A290;
+    --border: rgba(212, 168, 67, 0.18);
+    --border-hover: rgba(212, 168, 67, 0.35);
+    --gradient-primary: linear-gradient(135deg, #4A8C5E, #6AB87A, #D4A843);
+    --gradient-warm: linear-gradient(135deg, #E8C76A, #D4A843);
+    --gradient-card: linear-gradient(145deg, rgba(74, 140, 94, 0.12), rgba(106, 184, 122, 0.06));
     --radius: 16px;
     --radius-sm: 10px;
     --radius-lg: 24px;
@@ -91,25 +91,27 @@ a {
 .blob-1 {
     width: 600px;
     height: 600px;
-    background: #5A7A50;
+    background: #4A8C5E;
     top: -200px;
     right: -100px;
     animation-delay: 0s;
+    opacity: 0.5;
 }
 
 .blob-2 {
     width: 500px;
     height: 500px;
-    background: #7A8A50;
+    background: #8AA050;
     bottom: -150px;
     left: -100px;
     animation-delay: -7s;
+    opacity: 0.45;
 }
 
 .blob-3 {
     width: 400px;
     height: 400px;
-    background: #A09060;
+    background: #D4A843;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -137,7 +139,7 @@ a {
 }
 
 .nav.scrolled {
-    background: rgba(44, 42, 36, 0.92);
+    background: rgba(58, 56, 48, 0.92);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border);
@@ -254,7 +256,7 @@ a {
     position: fixed;
     inset: 0;
     z-index: 999;
-    background: rgba(44, 42, 36, 0.97);
+    background: rgba(58, 56, 48, 0.97);
     backdrop-filter: blur(30px);
     flex-direction: column;
     align-items: center;
@@ -350,7 +352,7 @@ a {
 }
 
 .title-indent {
-    padding-left: 1.5em;
+    padding-left: 2.2em;
 }
 
 .hero-subtitle {
@@ -823,25 +825,25 @@ a {
     font-weight: 600;
     padding: 3px 10px;
     border-radius: 100px;
-    background: rgba(90, 122, 90, 0.15);
+    background: rgba(74, 140, 94, 0.2);
     color: var(--primary-light);
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
 
 .tag-crime {
-    background: rgba(200, 80, 80, 0.15);
-    color: #D4908A;
+    background: rgba(220, 80, 70, 0.2);
+    color: #E8A090;
 }
 
 .tag-life {
-    background: rgba(196, 168, 106, 0.2);
-    color: var(--accent-light);
+    background: rgba(212, 168, 67, 0.25);
+    color: #E8C76A;
 }
 
 .tag-culture {
-    background: rgba(90, 122, 90, 0.2);
-    color: #A8C4A0;
+    background: rgba(74, 140, 94, 0.25);
+    color: #7CD498;
 }
 
 .episode-title {
@@ -907,13 +909,13 @@ a {
 }
 
 .tag-science {
-    background: rgba(120, 160, 120, 0.2);
-    color: #B0D0A8;
+    background: rgba(80, 170, 120, 0.25);
+    color: #70D4A0;
 }
 
 .tag-digital {
-    background: rgba(100, 140, 180, 0.15);
-    color: #90B8D4;
+    background: rgba(80, 150, 210, 0.2);
+    color: #70B8E8;
 }
 
 .episodes-cta {
