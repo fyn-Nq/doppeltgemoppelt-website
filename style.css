@@ -507,12 +507,13 @@ a {
 }
 
 .podcast-cover {
-    width: 340px;
-    height: 340px;
+    width: 360px;
+    height: 360px;
     border-radius: var(--radius-lg);
     position: relative;
     animation: coverFloat 6s ease-in-out infinite;
     overflow: hidden;
+    margin-left: 20px;
 }
 
 .podcast-cover::before {
