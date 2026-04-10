@@ -478,15 +478,14 @@ a {
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
-    background: var(--bg-card);
-    color: var(--primary-light);
-    border: 1px solid rgba(74, 140, 94, 0.5);
+    background: var(--surface);
+    color: var(--text);
+    border: 1px solid var(--border);
 }
 
 .btn-outline:hover {
-    background: var(--gradient-primary);
-    color: white;
-    border-color: transparent;
+    background: var(--bg-card-hover);
+    border-color: var(--border-hover);
     transform: translateY(-2px);
 }
 
@@ -1517,9 +1516,9 @@ a {
 }
 
 .modal-option.apple:hover {
-    background: rgba(124, 166, 124, 0.08);
-    border-color: rgba(124, 166, 124, 0.3);
-    color: #A8C4A0;
+    background: rgba(168, 85, 247, 0.1);
+    border-color: rgba(168, 85, 247, 0.3);
+    color: #C090F0;
 }
 
 .modal-option.h2radio:hover {
