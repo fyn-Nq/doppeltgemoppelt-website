@@ -16,10 +16,10 @@
     --primary-dark: #357048;
     --accent: #D4A843;
     --accent-light: #E8C76A;
-    --bg: #4A463C;
-    --bg-card: #565246;
-    --bg-card-hover: #625E50;
-    --surface: #5A564A;
+    --bg: #5C5850;
+    --bg-card: #686458;
+    --bg-card-hover: #747064;
+    --surface: #6E6A5E;
     --text: #FAF8F0;
     --text-muted: #D4CEB8;
     --text-dim: #A8A290;
@@ -139,7 +139,7 @@ a {
 }
 
 .nav.scrolled {
-    background: rgba(74, 70, 60, 0.94);
+    background: rgba(92, 88, 80, 0.94);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border);
@@ -256,7 +256,7 @@ a {
     position: fixed;
     inset: 0;
     z-index: 999;
-    background: rgba(74, 70, 60, 0.97);
+    background: rgba(92, 88, 80, 0.97);
     backdrop-filter: blur(30px);
     flex-direction: column;
     align-items: center;
@@ -338,6 +338,8 @@ a {
     letter-spacing: -2px;
     margin-bottom: 24px;
     animation: fadeInUp 0.8s ease 0.1s both;
+    text-align: right;
+    display: inline-block;
 }
 
 .title-line {
@@ -351,14 +353,8 @@ a {
     background-clip: text;
 }
 
-.hero-title {
-    text-align: right;
-    max-width: 620px;
-}
-
 @media (max-width: 1024px) {
     .hero-title {
-        text-align: right;
         margin-left: auto;
         margin-right: auto;
     }
