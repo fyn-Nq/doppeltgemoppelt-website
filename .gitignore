@@ -1,0 +1,12 @@
+# Lokale Dokumentation (nur auf PC, nicht im Repo)
+kategorien-keywords.txt
+PROJEKT-KONTEXT.md
+
+# Build output
+episodes.json
+
+# Claude Workspace
+.claude/
+
+# Node modules (falls mal benutzt)
+node_modules/

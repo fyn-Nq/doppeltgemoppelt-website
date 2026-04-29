@@ -924,6 +924,16 @@ a {
     color: #60C0F0;
 }
 
+.tag-psychology {
+    background: rgba(180, 100, 200, 0.3);
+    color: #D890E8;
+}
+
+.tag-curious {
+    background: rgba(255, 140, 60, 0.3);
+    color: #FFB070;
+}
+
 .episodes-cta {
     display: flex;
     justify-content: center;

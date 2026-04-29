@@ -326,8 +326,10 @@ function formatDate(dateString) {
     return `${String(date.getDate()).padStart(2, '0')}. ${months[date.getMonth()]} ${date.getFullYear()}`;
 }
 
-// Only these 5 categories exist - no new ones will be added
-// Strategy: check TITLE first (stronger signal), then fall back to description
+// 7 Kategorien mit Scoring-System
+// Title-Match = 10 Punkte, Description-Match = 3 Punkte
+// Hoechste Punktzahl gewinnt, bei Gleichstand entscheidet Reihenfolge
+// Fallback "Lifestyle" wenn nichts matcht (sehr unwahrscheinlich)
 function detectTag(title, description) {
     const titleLower = title.toLowerCase();
     const descLower = (description || '').toLowerCase();
@@ -335,124 +337,282 @@ function detectTag(title, description) {
     const CATEGORIES = [
         {
             label: 'True Crime', class: 'tag-crime',
-            titleKeys: [
+            keys: [
+                // Direkte Crime-Begriffe
                 'truecrime', 'true crime', 'mord', 'kriminal', 'tatwort', 'verbrechen',
-                'tatort', 'krimi', 'cold case', 'serienkiller', 'entf\u00fchr',
-                'vermisst', 'mysterium', 'mystery', 'unaufgekl\u00e4rt', 'polizei',
-                'gericht', 'justiz', 'zeugenschutz', 'schuldig', 'unschuldig',
-                '\u00fcberfall', 'raub', 'betrug', 'stalking', 'sekte'
-            ],
-            descKeys: [
-                'truecrime', 'true crime', 'kriminal', 'tatwort', 'ermittl',
-                'verbrechen', 'polizei', 'gericht', 'verd\u00e4chtig', 'urteil',
-                'serienkiller', 'cold case', 'forensi', 'tatort', 'zeug'
+                'tatort', 'krimi', 'cold case', 'serienkiller', 'serienmord',
+                'entf\u00fchr', 'vermisst', 'mysterium', 'mystery', 'unaufgekl\u00e4rt',
+                // Justiz
+                'polizei', 'gericht', 'justiz', 'zeugenschutz', 'schuldig', 'unschuldig',
+                'urteil', 'verd\u00e4chtig', 'angeklagt', 'gefangen', 'gef\u00e4ngnis',
+                'inhaft', 'verurteilt', 'freispruch', 'plaedoyer', 'staatsanwalt',
+                'verteidiger', 'forensi', 'spurensicherung', 'dna-spur', 'fingerabdruck',
+                'profile', 'zeuge', 'verbrecher', 't\u00e4ter', 'opfer',
+                // Spezifische Verbrechen
+                '\u00fcberfall', 'raub', 'betrug', 'stalking', 'erpress', 'entf\u00fchrung',
+                'vergewaltig', 'gewalt', 'verschollen', 'leiche', 'tot aufgefunden',
+                'amoklauf', 'attentat', 'anschlag', 'massaker', 'familientrag\u00f6die',
+                'kindesmissbrauch', 'femizid', 'totschlag', 'h\u00e4usliche gewalt',
+                'organisierte kriminalit\u00e4t', 'mafia', 'drogenkartell',
+                // Investigative
+                'ermittl', 'investigativ', 'aufkl\u00e4rung', 'fall ungel\u00f6st',
+                'akte x', 'verschw\u00f6rung', 'cover up', 'vertuschung',
+                // Bekannte Faelle
+                'jack the ripper', 'ted bundy', 'zodiac', 'ng-fall'
             ]
         },
         {
-            label: 'Kultur', class: 'tag-culture',
-            titleKeys: [
-                'subkultur', 'kultur', 'gesellschaft', 'generation', 'tradition',
-                'szene', 'musik', 'kunst', 'film', 'kino', 'theater', 'festival',
-                'literatur', 'buch', 'trend', 'mode', 'vielfalt', 'diversit\u00e4t',
-                'identit\u00e4t', 'sprache', 'dialekt', 'religion', 'feiertag',
-                'brauch', 'pop', 'hiphop', 'punk', 'indie', 'retro', 'vintage',
-                'streetwear', 'tattoo', 'graffiti', 'protest', 'aktivismus',
-                'feminismus', 'gleichberechtigung', 'rassismus', 'vorurteil',
-                'politik', 'wahl', 'demo', 'norm', 'tabu', 'kontrovers',
-                'meinung', 'debatte', 'reality tv', 'trash tv', 'influencer'
-            ],
-            descKeys: [
-                'subkultur', 'kultur', 'mainstream', 'bewegung', 'gesellschaft',
-                'generation', 'vielfalt', 'diversit\u00e4t', 'tradition', 'szene',
-                'aktivismus', 'protest', 'politik', 'trend'
-            ]
-        },
-        {
-            label: 'Digital', class: 'tag-digital',
-            titleKeys: [
-                'internet', 'digital', 'online', 'cyber', 'tech', 'app',
-                'social media', 'instagram', 'tiktok', 'youtube', 'twitter',
-                'smartphone', 'handy', 'gaming', 'gamer', 'ki', 'algorithmus',
-                'hacker', 'datenschutz', 'fake news', 'deep fake', 'influencer',
-                'streaming', 'netflix', 'podcast', 'bitcoin', 'krypto', 'nft',
-                'roboter', 'virtual reality', 'metaverse', 'screen', 'bildschirm',
-                'software', 'programmier', 'chatbot', 'chatgpt', 'k\u00fcnstliche intelligenz',
-                'darknet', 'passwort', 'spam', 'phishing', 'viral'
-            ],
-            descKeys: [
-                'internet', 'digital', 'cyber', 'grooming', 'social media', 'online',
-                'algorithmus', 'datenschutz', 'hacker', 'fake news', 'app',
-                'tiktok', 'instagram', 'gaming', 'k\u00fcnstliche intelligenz'
+            label: 'Psychologie', class: 'tag-psychology',
+            keys: [
+                // Mental Health
+                'psycholog', 'mental health', 'mentale gesundheit', 'mindset',
+                'depression', 'angstst\u00f6rung', 'angst', 'panikattack', 'panik',
+                'trauma', 'ptbs', 'burnout', 'stress', 'erschoepf',
+                'adhs', 'autismus', 'asperger', 'neurodivergen', 'hochsensibel',
+                'borderline', 'narzissmus', 'narzisst', 'soziopath', 'psychopath',
+                'phobi', 'zwangsst\u00f6rung', 'ocd', 'essst\u00f6rung', 'bipolar',
+                'sucht', 'abh\u00e4ngigkeit', 'co-abh\u00e4ngig',
+                // Psyche & Verhalten
+                'verhalten', 'verhaltensmuster', 'gedanken', 'gef\u00fchle', 'emotion',
+                'pers\u00f6nlichkeit', 'pers\u00f6nlichkeitstyp', 'pers\u00f6nlichkeitsst\u00f6rung',
+                'selbstwert', 'selbstvertrauen', 'selbstliebe', 'selbstreflexion',
+                'selbstsabotage', 'selbstzweifel', 'unbewusst', 'unterbewusst',
+                'manipulation', 'gaslighting', 'love bombing', 'toxisch',
+                'beziehungsmuster', 'attachment', 'bindungstyp', 'bindungsangst',
+                'verlustangst', 'kindheitstrauma', 'innere kind', 'inneres kind',
+                // Kognition
+                'gehirn', 'neuro', 'nervensystem', 'gedaechtnis', 'ged\u00e4chtnis',
+                'wahrnehmung', 'kognitive', 'kognition', 'intelligenz', 'iq', 'eq',
+                'aufmerksamkeit', 'fokus', 'konzentration', 'achtsamkeit', 'mindful',
+                'meditation', 'embodiment', 'k\u00f6rpergef\u00fchl',
+                // Therapie
+                'therapie', 'psychotherapie', 'verhaltenstherapie', 'systemische',
+                'gespraech', 'coaching', 'hypnose', 'emdr',
+                // Reaktion & Theorien
+                'reaktanz', 'kognitive dissonanz', 'placebo', 'nocebo', 'effekt',
+                'maslow', 'big five', 'mbti', 'enneagramm',
+                // Beziehung & Soziales (psychologische Aspekte)
+                'red flag', 'green flag', 'grenzen setzen', 'overthink', 'overthinking',
+                'people pleas', 'ghosting', 'breadcrumbing', 'situationship',
+                'introvert', 'extrovert', 'ambivert', 'empath', 'narzisst',
+                // Hormonen
+                'dopamin', 'serotonin', 'cortisol', 'oxytocin', 'adrenalin', 'endorphin'
             ]
         },
         {
             label: 'Wissenschaft', class: 'tag-science',
-            titleKeys: [
-                'k\u00f6rper', 'gehirn', 'neuro', 'wissenschaft', 'ph\u00e4nomen', 'biolog',
-                'medizin', 'psycholog', 'chemie', 'physik', 'experiment', 'forschung',
-                'evolution', 'dna', 'gen', 'zelle', 'organ', 'krankheit', 'virus',
-                'bakterie', 'impf', 'gesundheit', 'symptom', 'diagnose', 'therapie',
-                'mental health', 'depression', 'angstst\u00f6rung', 'trauma', 'adhs',
-                'autismus', 'schlaf', 'traum', 'ern\u00e4hrung', 'vitamin',
-                'hormon', 'adrenalin', 'dopamin', 'serotonin', 'universum',
-                'planet', 'weltall', 'klima', 'umwelt', 'natur', 'tier',
-                'mathematik', 'statistik', 'studie', 'hypothese', 'labor',
-                'anatomie', 'intelligenz', 'ged\u00e4chtnis', 'wahrnehmung',
-                'sinne', 'schmerz', 'allergie', 'sucht', 'drogen'
-            ],
-            descKeys: [
-                'k\u00f6rper', 'wissenschaft', 'forschung', 'studie', 'evolution',
-                'gehirn', 'neuro', 'psycholog', 'biolog', 'medizin', 'experiment',
-                'gesundheit', 'diagnose', 'mental health', 'ph\u00e4nomen'
+            keys: [
+                // Natur-Wissenschaften
+                'wissenschaft', 'forschung', 'studie', 'experiment', 'labor',
+                'hypothese', 'theorie', 'erkenntnis', 'beweis', 'evidenz',
+                'biolog', 'chemie', 'physik', 'mathematik', 'statistik',
+                'astronom', 'astrophysik', 'quantenphysik', 'teilchen',
+                'evolution', 'darwin', 'gen', 'genetik', 'dna', 'erbgut',
+                'zelle', 'mikrobiom', 'bakterie', 'virus', 'pilze',
+                // Medizin & Koerper
+                'medizin', 'medizinisch', 'arzt', 'pharma', 'medikament', 'wirkstoff',
+                'k\u00f6rper', 'koerper', 'organ', 'gehirn', 'herz', 'leber', 'niere',
+                'krankheit', 'krebs', 'tumor', 'diabetes', 'alzheimer', 'parkinson',
+                'symptom', 'diagnose', 'syndrom', 'epidemie', 'pandemie',
+                'impf', 'antikörper', 'immunsystem', 'allergie', 'autoimmun',
+                'hormon', 'stoffwechsel', 'vitamin', 'mineralstoff',
+                'anatomie', 'physiologie', 'sinne', 'sehen', 'h\u00f6ren', 'schmerz',
+                'phaenomen', 'ph\u00e4nomen', 'k\u00f6rperph\u00e4nomen',
+                // Tiere & Pflanzen
+                'tier', 'tierwelt', 'tierreich', 'pflanze', 'natur', 'biom',
+                // Universum & Erde
+                'universum', 'planet', 'erde', 'mond', 'sonne', 'weltall',
+                'klima', 'klimawandel', 'umwelt', 'oekolog', 'wetter',
+                'vulkan', 'erdbeben', 'meer', 'ozean', 'arktis',
+                // Drogen & Stoffe
+                'drogen', 'alkohol', 'koffein', 'nikotin', 'cannabis'
+            ]
+        },
+        {
+            label: 'Digital', class: 'tag-digital',
+            keys: [
+                // Tech & Internet
+                'internet', 'digital', 'online', 'cyber', 'cybersecurity', 'tech',
+                'technologie', 'smartphone', 'handy', 'computer', 'laptop',
+                'app ', ' app', 'application', 'software', 'hardware', 'algorithmus',
+                'algorithmen', 'data', 'daten', 'datenschutz', 'big data',
+                // KI & Robotik
+                ' ki ', 'ki?', 'k\u00fcnstliche intelligenz', 'chatgpt', 'chatbot',
+                'machine learning', 'ai ', ' ai', 'roboter', 'automatisierung',
+                'deep fake', 'deepfake', 'fake news',
+                // Social Media
+                'social media', 'instagram', 'tiktok', 'youtube', 'twitter', 'x ',
+                'facebook', 'snapchat', 'whatsapp', 'telegram', 'reddit', 'twitch',
+                'influencer', 'creator', 'follower', 'reichweite', 'viral',
+                'hashtag', 'trend ', 'algorithmus', 'fyp', 'reel', 'shorts',
+                // Gaming & Streaming
+                'gaming', 'gamer', 'video game', 'esport', 'streaming', 'streamer',
+                'netflix', 'amazon prime', 'disney plus',
+                // Sicherheit & Crypto
+                'hacker', 'hacking', 'phishing', 'spam', 'passwort', 'sicherheit',
+                'darknet', 'dark web', 'tor browser',
+                'bitcoin', 'krypto', 'kryptowährung', 'nft', 'blockchain',
+                // Cybercrime
+                'grooming', 'cybermobbing', 'cybergrooming', 'cyberstalking',
+                'sexting', 'doxing', 'troll', 'shitstorm',
+                // VR/AR
+                'virtual reality', 'vr ', 'augmented reality', 'ar ', 'metaverse',
+                'screen', 'bildschirm', 'screen time'
+            ]
+        },
+        {
+            label: 'Kultur', class: 'tag-culture',
+            keys: [
+                // Allgemein Gesellschaft
+                'kultur', 'subkultur', 'gegenkultur', 'gesellschaft', 'gesellschaftlich',
+                'generation', 'generation z', 'millennials', 'gen z', 'boomer',
+                'tradition', 'brauchtum', 'sitte', 'norm', 'gesellschaftsnorm',
+                'unspoken', 'small talk', 'etikette', 'h\u00f6flichkeit',
+                'vielfalt', 'diversit\u00e4t', 'identit\u00e4t', 'integration',
+                // Kunst & Medien
+                'kunst', 'k\u00fcnstler', 'gemaelde', 'museum', 'galerie',
+                'film', 'kino', 'serie', 'theater', 'oper', 'ballett',
+                'literatur', 'buch', 'roman', 'dichter', 'autor',
+                'musik', 'song', 'band', 'konzert', 'festival', 'album',
+                'pop', 'hiphop', 'rap', 'punk', 'rock', 'klassik', 'jazz',
+                'indie', 'metal', 'techno', 'k-pop',
+                // Mode & Style
+                'mode', 'fashion', 'trend', 'beauty', 'lippenstift', 'makeup',
+                'kosmetik', 'parfum', 'parfuem', 'duft', 'styling',
+                'streetwear', 'haute couture', 'designer', 'tattoo', 'piercing',
+                'retro', 'vintage', 'aesthetic', 'vibe',
+                // Sprache
+                'sprache', 'dialekt', 'akzent', 'jugendsprache', 'umgangssprache',
+                'wortschatz', 'grammatik', 'redensart', 'sprichwort',
+                // Religion & Politik
+                'religion', 'kirche', 'glaube', 'gott', 'spirituell', 'esoterik',
+                'christentum', 'islam', 'judentum', 'buddhismus', 'hinduismus',
+                'feiertag', 'weihnacht', 'ostern', 'ramadan',
+                'politik', 'wahl', 'demokratie', 'demonstration', 'demo',
+                'protest', 'aktivismus', 'feminismus', 'gleichberechtigung',
+                'rassismus', 'sexismus', 'lgbtq', 'queer', 'pride',
+                'vorurteil', 'tabu', 'kontrovers', 'meinung', 'debatte',
+                // Reality / Pop Culture
+                'reality tv', 'trash tv', 'gntm', 'sommerhaus', 'bachelor',
+                'bachelorette', 'tv-show', 'show', 'casting',
+                // Gegenkultur
+                'szene', 'subkulturen', 'goth', 'emo', 'hippie', 'punk',
+                'mainstream', 'bewegung', 'underground'
             ]
         },
         {
             label: 'Lifestyle', class: 'tag-life',
-            titleKeys: [
-                'phobi', 'liebe', 'beziehung', 'weiblich', 'longevity', 'achtsamkeit',
-                'minimalism', 'alltag', 'selbst', 'date', 'dating', 'stress',
-                'erwachsen', 'entscheidung', 'freundschaft', 'familie', 'hochzeit',
-                'trennung', 'singleleben', 'reise', 'travel', 'urlaub', 'fernweh',
-                'kochen', 'rezept', 'essen', 'food', 'fitness', 'sport', 'yoga',
-                'meditation', 'routine', 'morgenroutine', 'abendroutine', 'produktiv',
-                'motivation', 'ziele', 'neujahrsvors\u00e4tze', 'gewohnheit', 'habit',
-                'gl\u00fcck', 'zufriedenheit', 'dankbarkeit', 'journal', 'tagebuch',
-                'wohnung', 'umzug', 'einrichtung', 'ordnung', 'aufr\u00e4umen',
-                'nachhaltigkeit', 'vegan', 'vegetarisch', 'zero waste', 'secondhand',
-                'geld', 'finanzen', 'sparen', 'investier', 'job', 'karriere',
-                'bewerbung', 'studium', 'uni', 'ausbildung', 'beruf',
-                'selbstliebe', 'selfcare', 'self care', 'grenzen setzen',
-                'toxisch', 'red flag', 'green flag', 'attachment', 'bindung',
-                'introvert', 'extrovert', 'pers\u00f6nlichkeit', 'sternzeichen',
-                'manifestation', 'manifest', 'overthink', 'quarter life',
-                'adulting', 'halbwahrheit', 'l\u00fcge', 'ehrlichkeit',
-                'bucket list', 'challenge', 'sommer', 'winter', 'jahreszeit',
-                'weihnacht', 'silvester', 'geburtstag', 'geschenk'
-            ],
-            descKeys: [
-                'phobi', 'beziehung', 'weiblich', 'longevity', 'achtsamkeit',
-                'entscheidung', 'freundschaft', 'selbstliebe', 'selfcare',
-                'routine', 'motivation', 'nachhaltigkeit', 'finanzen',
-                'dating', 'liebe', 'manifestation', 'overthink'
+            keys: [
+                // Beziehungen
+                'liebe', 'beziehung', 'partner', 'freund', 'partnerin', 'freundin',
+                'date ', 'dating', 'angeldate', 'kennenlern', 'flirt', 'verliebt',
+                'hochzeit', 'heirat', 'verlobung', 'ehe', 'trennung', 'scheidung',
+                'singleleben', 'single', 'beziehung', 'fernbeziehung',
+                'freundschaft', 'beste freund', 'familie', 'eltern', 'kinder',
+                'mutterschaft', 'vaterschaft', 'schwester', 'bruder', 'oma', 'opa',
+                // Reise
+                'reise', 'travel', 'urlaub', 'fernweh', 'roadtrip', 'backpack',
+                'wandern', 'camping', 'all inclusive', 'au\u00dferhalb',
+                // Essen & Trinken
+                'kochen', 'rezept', 'essen', 'food', 'foodie', 'gourmet',
+                'restaurant', 'caf\u00e9', 'cafe', 'kaffee', 'tee', 'wein',
+                'vegan', 'vegetarisch', 'fleisch', 'sn\u00fcll', 'gem\u00fcsechip',
+                'fr\u00fchst\u00fcck', 'mittag', 'abend', 'snack',
+                // Sport & Fitness
+                'fitness', 'sport', 'yoga', 'pilates', 'workout', 'training',
+                'lauf', 'joggen', 'gym', 'crossfit', 'kraftsport',
+                // Routinen & Selbstoptimierung
+                'routine', 'morgenroutine', 'abendroutine', 'produktiv', 'produktivit\u00e4t',
+                'motivation', 'ziele', 'goal', 'neujahrsvors\u00e4tze', 'vorsatz',
+                'gewohnheit', 'habit', 'discipline', 'disziplin',
+                'gl\u00fcck', 'happiness', 'zufriedenheit', 'dankbarkeit', 'gratitude',
+                'journal', 'tagebuch', 'manifestation', 'manifest',
+                // Wohnen
+                'wohnung', 'umzug', 'einrichtung', 'interior', 'deko', 'haus',
+                'ordnung', 'aufr\u00e4umen', 'minimalism', 'cleancore',
+                'traumhaus', 'eigenheim',
+                // Nachhaltigkeit
+                'nachhaltigkeit', 'sustainable', 'zero waste', 'secondhand',
+                'second hand', 'thrift', 'fair fashion',
+                // Geld & Karriere
+                'geld', 'finanzen', 'sparen', 'investier', 'aktien', 'etf',
+                'job', 'karriere', 'beruf', 'bewerbung', 'studium', 'uni',
+                'ausbildung', 'praktikum', 'work-life',
+                // Selbstentwicklung
+                'selbst', 'selfcare', 'self care', 'selbstliebe', 'selbstfindung',
+                'erwachsen', 'adulting', 'quarter life', 'quarterlife',
+                // Frauenleben
+                'weiblich', 'feminin', 'periode', 'menstruation', 'schwanger',
+                'mutterschaft', 'wechseljahre', 'pms',
+                // Sonstiges Lifestyle
+                'sternzeichen', 'horoskop', 'astrologie', 'tarot',
+                'longevity', 'jung bleiben', 'anti aging',
+                'halbwahrheit', 'l\u00fcge', 'ehrlichkeit',
+                'sommer', 'winter', 'fr\u00fchling', 'herbst', 'jahreszeit',
+                'silvester', 'geburtstag', 'geschenk', 'jubiläum',
+                'alltag', 'feierabend', 'me time'
+            ]
+        },
+        {
+            label: 'Kurioses', class: 'tag-curious',
+            keys: [
+                // Sekten & Verschwoerung
+                'sekte', 'sekten', 'kult', 'cult', 'verschw\u00f6rung',
+                'verschw\u00f6rungstheorie', 'illuminati', 'reichsb\u00fcrger',
+                'flat earth', 'flacherde',
+                // Wettbewerbe & Skurriles
+                'wettbewerb', 'wettkampf', 'meisterschaft', 'weltrekord',
+                'guinness', 'kastanienkrieg', 'kastanien', 'wife carrying',
+                'olympia', 'sonderling', 'skurril', 'verr\u00fcckt',
+                'bizarr', 'merkwuerdig', 'merkw\u00fcrdig', 'absurd',
+                // Phaenomene
+                'mysteri\u00f6s', 'unerklaerlich', 'unerkl\u00e4rlich', 'geheimnisvoll',
+                'paranormal', 'geist', 'spuk', 'haunted', 'gespenst',
+                'ufo', 'au\u00dferirdisch', 'alien', 'extraterrestrisch',
+                // Subkulturen / Randgruppen (kurios)
+                'subkultur', 'randgruppe', 'au\u00dfenseiter', 'hobby',
+                'sammler', 'sammelleidenschaft',
+                // Geschichte & Kuriositaeten
+                'historisch', 'geschichte', 'mittelalter', 'antike',
+                'r\u00f6mer', 'ritter', 'pirat', 'wikinger', 'ausgestorben',
+                'archaeolog', 'arch\u00e4olog', 'fossil', 'mumie', 'pyramide',
+                // Mystik
+                'magie', 'hexe', 'fluch', 'aberglaube', 'voodoo',
+                'ritual', 'rituale',
+                // Tiere kurios
+                'kurios', 'kuriosit\u00e4t', 'unique', 'einzigartig',
+                'bizarre fakten', 'fun fact', 'gewusst',
+                // Lebensmittel kurios
+                'gem\u00fcsechip', 'gemuesechip', 'kuriose', 'exotisch',
+                // Listen
+                'top 10', 'top ten', 'die schlimmsten', 'die seltsamsten',
+                'die verr\u00fccktesten', 'world record',
+                // Specific recurring topics
+                'lola', 'haustier-stori', 'dog stuff'
             ]
         }
     ];
 
-    // Pass 1: Match on TITLE only (strongest signal)
-    for (const cat of CATEGORIES) {
-        if (cat.titleKeys.some(k => titleLower.includes(k))) {
-            return { label: cat.label, class: cat.class };
+    // Scoring: Title-Match = 10 Punkte, Description-Match = 3 Punkte
+    const scores = CATEGORIES.map(cat => {
+        let score = 0;
+        for (const k of cat.keys) {
+            if (titleLower.includes(k)) score += 10;
+            if (descLower.includes(k)) score += 3;
         }
+        return { cat, score };
+    });
+
+    // Hoechste Punktzahl finden
+    scores.sort((a, b) => b.score - a.score);
+    const winner = scores[0];
+
+    if (winner.score > 0) {
+        return { label: winner.cat.label, class: winner.cat.class };
     }
 
-    // Pass 2: Match on DESCRIPTION only (weaker signal, only use specific keywords)
-    for (const cat of CATEGORIES) {
-        if (cat.descKeys.some(k => descLower.includes(k))) {
-            return { label: cat.label, class: cat.class };
-        }
-    }
-
-    return null;
+    // Fallback: Lifestyle (sehr unwahrscheinlich, da fast alles matcht)
+    return { label: 'Lifestyle', class: 'tag-life' };
 }
 
 function initScrollReveal() {
