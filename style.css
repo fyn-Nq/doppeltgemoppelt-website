@@ -16,10 +16,10 @@
     --primary-dark: #357048;
     --accent: #D4A843;
     --accent-light: #E8C76A;
-    --bg: #5C5850;
-    --bg-card: #4E4B40;
-    --bg-card-hover: #5A5748;
-    --surface: #524F44;
+    --bg: #6E6A5E;
+    --bg-card: #605C50;
+    --bg-card-hover: #6C6856;
+    --surface: #646052;
     --text: #FAF8F0;
     --text-muted: #D4CEB8;
     --text-dim: #A8A290;
@@ -495,8 +495,8 @@ a {
     inset: -20%;
     z-index: -1;
     background: url('https://d3t3ozftmdmh3i.cloudfront.net/staging/podcast_uploaded_nologo/42547786/42547786-1744534684687-b5af5e9778671.jpg') center center / cover no-repeat;
-    filter: blur(80px) saturate(1.5) brightness(0.35);
-    opacity: 0.5;
+    filter: blur(80px) saturate(1.4) brightness(0.7);
+    opacity: 0.45;
     pointer-events: none;
 }
 
@@ -1003,6 +1003,81 @@ a {
     color: var(--text-muted);
     font-size: 0.95rem;
     line-height: 1.7;
+}
+
+/* --- Kontakt Section --- */
+.kontakt-intro {
+    max-width: 600px;
+    margin-bottom: 40px;
+}
+
+.kontakt-intro p {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+}
+
+.kontakt-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    max-width: 800px;
+}
+
+.kontakt-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 36px;
+    transition: all 0.4s ease;
+    text-decoration: none;
+    color: var(--text);
+    display: block;
+}
+
+.kontakt-card:hover {
+    border-color: var(--border-hover);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-glow);
+}
+
+.kontakt-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    background: rgba(74, 140, 94, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-light);
+    margin-bottom: 20px;
+}
+
+.kontakt-card h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.kontakt-card p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    word-break: break-word;
+}
+
+@media (max-width: 768px) {
+    .kontakt-grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    .kontakt-intro {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
 
 /* --- Listen Section --- */
