@@ -160,7 +160,7 @@ a {
     display: flex;
     align-items: center;
     gap: 12px;
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 600;
     font-size: 1.1rem;
     z-index: 1001;
@@ -274,7 +274,7 @@ a {
 }
 
 .mobile-link {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 2rem;
     font-weight: 600;
     color: var(--text-muted);
@@ -332,7 +332,7 @@ a {
 }
 
 .hero-title {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: clamp(3.5rem, 8vw, 6rem);
     font-weight: 700;
     line-height: 1;
@@ -389,7 +389,7 @@ a {
 }
 
 .stat-number {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 1.8rem;
     font-weight: 700;
     background: var(--gradient-primary);
@@ -678,7 +678,7 @@ a {
 }
 
 .section-title {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: clamp(2rem, 4vw, 3rem);
     font-weight: 700;
     letter-spacing: -1px;
@@ -738,7 +738,7 @@ a {
 .about-card h3 {
     position: relative;
     z-index: 1;
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 1.25rem;
     font-weight: 600;
     margin-bottom: 12px;
@@ -801,7 +801,7 @@ a {
     justify-content: center;
     width: 80px;
     min-height: 100%;
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 700;
     font-size: 1rem;
     color: var(--text-dim);
@@ -854,7 +854,7 @@ a {
 }
 
 .episode-title {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 1.25rem;
     font-weight: 600;
     margin-bottom: 8px;
@@ -988,14 +988,14 @@ a {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 2.2rem;
     font-weight: 700;
     color: white;
 }
 
 .host-card h3 {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 1.5rem;
     font-weight: 700;
     margin-bottom: 12px;
@@ -1056,7 +1056,7 @@ a {
 }
 
 .kontakt-card h3 {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 1.25rem;
     font-weight: 600;
     margin-bottom: 8px;
@@ -1229,7 +1229,7 @@ a {
     display: flex;
     align-items: center;
     gap: 12px;
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 600;
     font-size: 0.95rem;
 }
@@ -1558,7 +1558,7 @@ a {
 }
 
 .modal-title {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 1.3rem;
     font-weight: 700;
     margin-bottom: 6px;
