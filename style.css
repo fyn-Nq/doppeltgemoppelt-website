@@ -25,7 +25,7 @@
     --text-dim: #8A8678;
     --border: rgba(38, 36, 28, 0.12);
     --border-hover: rgba(38, 36, 28, 0.22);
-    --gradient-primary: linear-gradient(135deg, #3D7A50, #5A9E6A, #C4972E);
+    --gradient-primary: linear-gradient(135deg, #2F6B42, #4A8C5E, #6FBB84);
     --gradient-warm: linear-gradient(135deg, #C4972E, #A8801F);
     --gradient-card: linear-gradient(145deg, rgba(61, 122, 80, 0.06), rgba(90, 158, 106, 0.03));
     --radius: 16px;
