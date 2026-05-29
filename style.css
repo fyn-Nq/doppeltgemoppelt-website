@@ -301,9 +301,9 @@ a {
 .hero {
     position: relative;
     width: 100%;
-    height: 100vh;
-    min-height: 640px;
-    max-height: 900px;
+    height: 70vh;
+    min-height: 540px;
+    max-height: 720px;
     overflow: hidden;
     display: block;
     padding: 0;
@@ -317,25 +317,26 @@ a {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center 20%;
+    object-position: center 35%;
     z-index: 0;
-    filter: brightness(1.35) contrast(0.72) saturate(0.65);
-    opacity: 0.5;
+    filter: brightness(1.1) contrast(0.85) saturate(0.8);
+    opacity: 0.85;
 }
 
 .hero-overlay {
     position: absolute;
     inset: 0;
     background:
-        linear-gradient(180deg, rgba(255, 255, 248, 0.4) 0%, rgba(255, 255, 248, 0.15) 40%, rgba(255, 255, 248, 0.2) 100%);
+        linear-gradient(180deg, rgba(255, 255, 248, 0.25) 0%, rgba(255, 255, 248, 0.1) 50%, rgba(255, 255, 248, 0.2) 100%);
     z-index: 1;
     pointer-events: none;
 }
 
 .hero-corner-top {
     position: absolute;
-    top: 110px;
+    top: 50%;
     left: 48px;
+    transform: translateY(-50%);
     z-index: 3;
     animation: fadeInUp 0.8s ease 0.1s both;
     max-width: 540px;
@@ -361,7 +362,7 @@ a {
 .hero-corner-bottom {
     position: absolute;
     right: 56px;
-    bottom: 100px;
+    bottom: 40px;
     text-align: right;
     z-index: 3;
     animation: fadeInUp 0.8s ease 0.3s both;
