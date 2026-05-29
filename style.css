@@ -321,7 +321,7 @@ a {
     width: min(82%, 1200px);
     height: 62%;
     object-fit: cover;
-    object-position: center top;
+    object-position: center center;
     z-index: 0;
     opacity: 1;
     border-radius: 18px;
