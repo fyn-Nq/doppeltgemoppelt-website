@@ -307,6 +307,10 @@ a {
     padding: 0;
     margin: 0;
     z-index: 1;
+    background:
+        radial-gradient(ellipse at 20% 100%, rgba(106, 184, 122, 0.35), transparent 60%),
+        radial-gradient(ellipse at 100% 20%, rgba(180, 200, 120, 0.3), transparent 60%),
+        linear-gradient(135deg, #B8D8B0 0%, #C8DEB0 35%, #D6E0B8 65%, #B8C898 100%);
 }
 
 .hero-bg-photo {
@@ -314,8 +318,8 @@ a {
     inset: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    object-position: center 20%;
+    object-fit: contain;
+    object-position: center center;
     z-index: 0;
     opacity: 1;
 }
@@ -323,8 +327,7 @@ a {
 .hero-overlay {
     position: absolute;
     inset: 0;
-    background:
-        linear-gradient(180deg, rgba(247, 250, 242, 0.12) 0%, rgba(247, 250, 242, 0.0) 30%, rgba(247, 250, 242, 0.18) 100%);
+    background: none;
     z-index: 1;
     pointer-events: none;
 }
