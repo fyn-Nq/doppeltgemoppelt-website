@@ -319,41 +319,50 @@ a {
     object-fit: cover;
     object-position: center 30%;
     z-index: 0;
+    filter: brightness(1.25) contrast(0.78) saturate(0.7);
+    opacity: 0.55;
 }
 
 .hero-overlay {
     position: absolute;
     inset: 0;
     background:
-        linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,0) 70%, rgba(0,0,0,0.35) 100%),
-        linear-gradient(90deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0) 50%);
+        linear-gradient(180deg, rgba(255, 255, 248, 0.4) 0%, rgba(255, 255, 248, 0.15) 40%, rgba(255, 255, 248, 0.2) 100%);
     z-index: 1;
     pointer-events: none;
 }
 
 .hero-corner-top {
     position: absolute;
-    top: 100px;
-    left: 40px;
+    top: 110px;
+    left: 48px;
     z-index: 3;
     animation: fadeInUp 0.8s ease 0.1s both;
+    max-width: 540px;
+}
+
+.hero-stats-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
 }
 
 .hero-release {
-    color: #FFFFFF;
+    color: #1a1a14;
     font-family: 'Poppins', sans-serif;
-    font-size: 1rem;
-    font-weight: 500;
-    line-height: 1.4;
-    margin-bottom: 20px;
-    text-shadow: 0 2px 12px rgba(0,0,0,0.4);
-    letter-spacing: 0.2px;
+    font-size: clamp(1.6rem, 2.4vw, 2.1rem);
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+    margin: 0;
 }
 
 .hero-corner-bottom {
     position: absolute;
-    right: 40px;
-    bottom: 80px;
+    right: 56px;
+    bottom: 100px;
     text-align: right;
     z-index: 3;
     animation: fadeInUp 0.8s ease 0.3s both;
@@ -361,16 +370,12 @@ a {
 
 .hero-title-cover {
     font-family: 'Poppins', sans-serif;
-    font-size: clamp(3.5rem, 9vw, 7rem);
+    font-size: clamp(3.5rem, 7vw, 6.5rem);
     font-weight: 800;
-    line-height: 0.95;
-    letter-spacing: -1px;
-    margin: 0 0 8px 0;
-    color: transparent;
-    -webkit-text-stroke: 2.5px #B8E0BE;
-    text-shadow:
-        0 0 40px rgba(150, 220, 165, 0.4),
-        0 0 80px rgba(150, 220, 165, 0.2);
+    line-height: 0.92;
+    letter-spacing: -2px;
+    margin: 0 0 10px 0;
+    color: #2F6B42;
 }
 
 .hero-title-cover span {
@@ -378,27 +383,48 @@ a {
 }
 
 .hero-tagline {
-    color: #F5FAF0;
+    color: #1a1a14;
     font-family: 'Poppins', sans-serif;
-    font-size: clamp(1.2rem, 2vw, 1.6rem);
-    font-weight: 500;
-    letter-spacing: 1.5px;
-    margin-top: 12px;
-    text-shadow: 0 2px 12px rgba(0,0,0,0.4);
+    font-size: clamp(1.3rem, 2.2vw, 1.9rem);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-top: 8px;
 }
 
-/* Hero Stats - new design (on photo overlay) */
+/* Hero Stats - white pill background */
 .hero-stats {
     display: flex;
     align-items: center;
     gap: 16px;
-    padding: 10px 18px;
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
+    padding: 12px 20px;
+    background: #FFFFFF;
     border-radius: 14px;
-    box-shadow: 0 6px 24px rgba(0,0,0,0.12);
+    box-shadow: 0 4px 18px rgba(38, 36, 28, 0.1);
     width: fit-content;
+    border: 1px solid rgba(74, 140, 94, 0.12);
+}
+
+/* Spotify button in hero */
+.hero-spotify-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 22px;
+    background: linear-gradient(135deg, #4A8C5E, #5A9E6A);
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: 14px;
+    text-decoration: none;
+    box-shadow: 0 4px 18px rgba(74, 140, 94, 0.3);
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.hero-spotify-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(74, 140, 94, 0.45);
 }
 
 .stat {
@@ -445,23 +471,48 @@ a {
 }
 
 /* Hero responsive */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
     .hero {
-        min-height: 560px;
+        min-height: 620px;
+        max-height: none;
+        height: auto;
+        padding-top: 100px;
+        padding-bottom: 80px;
     }
     .hero-corner-top {
-        top: 90px;
-        left: 20px;
-        right: 20px;
+        position: relative;
+        top: 0;
+        left: 0;
+        right: 0;
+        padding: 0 24px;
+        max-width: 100%;
+    }
+    .hero-stats-row {
+        gap: 12px;
     }
     .hero-corner-bottom {
-        right: 20px;
-        left: 20px;
-        bottom: 50px;
+        position: relative;
+        right: 0;
+        bottom: 0;
+        text-align: center;
+        padding: 60px 24px 0;
     }
+    .hero-title-cover {
+        text-align: center;
+        font-size: clamp(3.5rem, 14vw, 6rem);
+    }
+    .hero-tagline {
+        text-align: center;
+    }
+    .hero-release {
+        font-size: clamp(1.2rem, 4vw, 1.6rem);
+    }
+}
+
+@media (max-width: 480px) {
     .hero-stats {
-        gap: 10px;
-        padding: 8px 12px;
+        gap: 12px;
+        padding: 10px 14px;
     }
     .stat-number {
         font-size: 1.1rem;
@@ -469,8 +520,9 @@ a {
     .stat-label {
         font-size: 0.55rem;
     }
-    .hero-release {
+    .hero-spotify-btn {
         font-size: 0.85rem;
+        padding: 10px 16px;
     }
 }
 
