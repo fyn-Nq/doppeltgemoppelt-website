@@ -300,8 +300,8 @@ a {
 .hero {
     position: relative;
     width: 100%;
-    height: calc(100vh - 68px);
-    min-height: 620px;
+    height: calc(100vh - 88px);
+    min-height: 580px;
     overflow: hidden;
     display: block;
     padding: 0;
@@ -330,12 +330,11 @@ a {
     pointer-events: none;
 }
 
-.hero-release-wrap {
-    position: absolute;
-    top: 40px;
-    left: 40px;
-    z-index: 3;
-    animation: fadeInUp 0.8s ease 0.1s both;
+.hero-stats-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
 }
 
 .hero-release {
@@ -345,7 +344,7 @@ a {
     font-weight: 600;
     line-height: 1.15;
     letter-spacing: -0.4px;
-    margin: 0;
+    margin: 18px 0 0 0;
 }
 
 .hero-left-bottom {
@@ -354,7 +353,6 @@ a {
     bottom: 36px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
     align-items: flex-start;
     z-index: 3;
     animation: fadeInUp 0.8s ease 0.2s both;
