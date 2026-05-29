@@ -78,7 +78,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=34">
+    <link rel="stylesheet" href="style.css?v=35">
 </head>
 <body>
     <!-- Animated Background -->
@@ -155,19 +155,13 @@
         </div>
     </div>
 
-    <!-- Hero Section -->
+    <!-- Hero Section (NEW Design) -->
     <header class="hero" id="hero">
-        <div class="hero-content">
-            <div class="hero-badge">Podcast</div>
-            <h1 class="hero-title">
-                <span class="title-line title-accent">DOPPELT</span>
-                <span class="title-line title-accent">GEMOPPELT</span>
-            </h1>
-            <p class="hero-subtitle">
-                Der Podcast, in dem <strong>Leonie &amp; Nica</strong> alles doppelt aufrollen &mdash;
-                von Themen, die KI ausspuckt, bis zu Stories von spannenden Menschen.
-                Plus: jede Menge pers&ouml;nliche Anekdoten.
-            </p>
+        <img src="assets/hero-studio.jpg" alt="Leonie und Nica im Studio mit Kopfh&ouml;rern" class="hero-bg-photo">
+        <div class="hero-overlay"></div>
+
+        <div class="hero-corner-top">
+            <p class="hero-release">Neue Folgen immer<br>montags um 8 Uhr</p>
             <div class="hero-stats">
                 <div class="stat">
                     <span class="stat-number" id="episodeCount">...</span>
@@ -184,58 +178,28 @@
                     <span class="stat-label">Instagram</span>
                 </a>
             </div>
-            <div class="hero-actions">
-                <a href="https://open.spotify.com/show/4ZY12xj8WgAdOBHCcyFTaV" target="_blank" class="btn btn-primary">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
-                    Auf Spotify h&ouml;ren
-                </a>
-                <a href="#episodes" class="btn btn-secondary">Alle Episoden</a>
-            </div>
         </div>
-        <div class="hero-visual">
-            <div class="podcast-cover">
-                <img src="https://d3t3ozftmdmh3i.cloudfront.net/staging/podcast_uploaded_nologo/42547786/42547786-1744534684687-b5af5e9778671.jpg" alt="Doppeltgemoppelt Podcast Cover" class="cover-img" id="coverImg">
-                <div class="equalizer">
-                    <span></span><span></span><span></span><span></span><span></span>
-                    <span></span><span></span><span></span><span></span>
-                </div>
-            </div>
-        </div>
-        <!-- Hero background image (blurred cover) -->
-        <div class="hero-bg-image" aria-hidden="true"></div>
-        <div class="scroll-indicator">
-            <div class="scroll-line"></div>
+
+        <div class="hero-corner-bottom">
+            <h1 class="hero-title-cover">
+                <span>DOPPELT</span>
+                <span>GEMOPPELT</span>
+            </h1>
+            <p class="hero-tagline">Der Podcast</p>
         </div>
     </header>
 
-    <!-- About Section -->
+    <!-- About Section (NEW Design - 2 column layout) -->
     <section class="section about" id="about">
         <div class="container">
-            <div class="section-header">
-                <span class="section-tag">&Uuml;ber uns</span>
-                <h2 class="section-title">Alles doppelt. <br>Alles ehrlich.</h2>
-            </div>
-            <div class="about-grid">
-                <div class="about-card">
-                    <div class="about-icon">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>
-                    </div>
-                    <h3>Der Podcast</h3>
-                    <p>Doppeltgemoppelt findet zwischen Faktenchecks, pers&ouml;nlichen Schwenks und v&ouml;llig durchgeknallten Motivationsspr&uuml;chen statt. Dieser Infotainment-Podcast von Leonie &amp; Nica ist genau der Richtige f&uuml;r euch, denn ihr k&ouml;nnt euch berieseln lassen und lernt dabei ganz unterbewusst etwas Neues.</p>
+            <div class="about-layout">
+                <div class="about-text">
+                    <span class="section-tag">&Uuml;ber uns</span>
+                    <h2 class="about-heading">Der Podcast</h2>
+                    <p>Doppeltgemoppelt findet zwischen Faktenchecks, pers&ouml;nlichen Schwenks und v&ouml;llig durchgeknallten Motivationsspr&uuml;chen statt. Dieser Infotainment-Podcast von <strong>Leonie &amp; Nica</strong> ist genau der Richtige f&uuml;r euch, denn ihr k&ouml;nnt euch berieseln lassen und lernt dabei ganz unterbewusst etwas Neues.</p>
                 </div>
-                <div class="about-card">
-                    <div class="about-icon">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                    </div>
-                    <h3>Die Themen</h3>
-                    <p>Unsere Themen entstehen gemeinsam mit k&uuml;nstlicher Intelligenz, damit wir unsere eigene Bubble verlassen. So landen wir immer wieder bei Fragen und Ideen, auf die wir selbst nie gekommen w&auml;ren, und k&ouml;nnen so m&ouml;glichst viele von euch abholen. Ab und zu haben wir auch G&auml;ste &mdash; f&uuml;r noch mehr Deep Dive.</p>
-                </div>
-                <div class="about-card">
-                    <div class="about-icon">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                    </div>
-                    <h3>Die Community</h3>
-                    <p>Der Podcast soll nicht nur unseren Horizont erweitern, sondern auch euren! Wenn ihr Feedback, Themenideen oder lustige Schwenks habt, meldet euch gern bei uns &mdash; per Instagram oder per Mail!</p>
+                <div class="about-image">
+                    <img src="assets/cover.jpg" alt="Doppeltgemoppelt Podcast Cover mit Leonie und Nica" class="about-cover">
                 </div>
             </div>
         </div>
@@ -264,15 +228,12 @@
         </div>
     </section>
 
-    <!-- Hosts Section -->
+    <!-- Hosts Section (NEW Design) -->
     <section class="section hosts" id="hosts">
         <div class="container">
             <div class="section-header">
-                <span class="section-tag">Die Hosts</span>
-                <h2 class="section-title">Doppelt h&auml;lt besser.</h2>
-            </div>
-            <div class="hosts-intro">
-                <p>Zwei angehende Journalistinnen der <a href="https://www.h2.de" target="_blank" style="color: var(--primary-light);">Hochschule Magdeburg-Stendal</a>, zwei Mikrofone und jede Menge Themen &mdash; das ist Doppeltgemoppelt.</p>
+                <span class="section-tag">Hosts</span>
+                <h2 class="section-title">Das sind wir</h2>
             </div>
             <div class="hosts-grid">
                 <div class="host-card">
@@ -289,6 +250,9 @@
                     <h3>Leonie</h3>
                     <p>Sie stellt Fragen, wo andere einfach weitergehen w&uuml;rden, und denkt lieber einmal &ouml;fter um die Ecke, damit alles perfekt ist.</p>
                 </div>
+            </div>
+            <div class="hosts-themes">
+                <p>Unsere Themen entstehen gemeinsam mit k&uuml;nstlicher Intelligenz, damit wir unsere eigene Bubble verlassen. So landen wir immer wieder bei Fragen und Ideen, auf die wir selbst nie gekommen w&auml;ren, und k&ouml;nnen so m&ouml;glichst viele von euch abholen. F&uuml;r noch mehr Deep Dive laden wir auch gern G&auml;ste ein!</p>
             </div>
         </div>
     </section>
