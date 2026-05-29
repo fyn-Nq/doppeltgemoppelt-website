@@ -128,23 +128,22 @@ a {
 
 /* --- Navigation --- */
 .nav {
-    position: fixed;
+    position: sticky;
     top: 0;
     left: 0;
     right: 0;
     z-index: 1000;
-    padding: 16px 0;
-    transition: background 0.3s ease, padding 0.3s ease, box-shadow 0.3s ease;
-    background: transparent;
-    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+    padding: 14px 0;
+    background: rgba(247, 250, 242, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 2px 20px rgba(38, 36, 28, 0.05);
+    transition: padding 0.3s ease, box-shadow 0.3s ease;
 }
 
 .nav.scrolled {
-    background: rgba(240, 242, 232, 0.9);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    box-shadow: 0 2px 20px rgba(38, 36, 28, 0.08);
-    padding: 12px 0;
+    box-shadow: 0 2px 20px rgba(38, 36, 28, 0.1);
+    padding: 10px 0;
 }
 
 .nav-inner {
@@ -301,9 +300,9 @@ a {
 .hero {
     position: relative;
     width: 100%;
-    height: 70vh;
-    min-height: 540px;
-    max-height: 720px;
+    height: 78vh;
+    min-height: 580px;
+    max-height: 780px;
     overflow: hidden;
     display: block;
     padding: 0;
@@ -317,52 +316,55 @@ a {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center 35%;
+    object-position: center 50%;
     z-index: 0;
-    filter: brightness(1.1) contrast(0.85) saturate(0.8);
-    opacity: 0.85;
+    filter: brightness(1.05) contrast(0.95);
+    opacity: 1;
 }
 
 .hero-overlay {
     position: absolute;
     inset: 0;
     background:
-        linear-gradient(180deg, rgba(255, 255, 248, 0.25) 0%, rgba(255, 255, 248, 0.1) 50%, rgba(255, 255, 248, 0.2) 100%);
+        linear-gradient(180deg, rgba(255, 255, 248, 0.15) 0%, rgba(255, 255, 248, 0.0) 30%, rgba(255, 255, 248, 0.1) 100%);
     z-index: 1;
     pointer-events: none;
 }
 
-.hero-corner-top {
+.hero-release-wrap {
     position: absolute;
-    top: 50%;
-    left: 48px;
-    transform: translateY(-50%);
+    top: 40px;
+    left: 40px;
     z-index: 3;
     animation: fadeInUp 0.8s ease 0.1s both;
-    max-width: 540px;
-}
-
-.hero-stats-row {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    flex-wrap: wrap;
 }
 
 .hero-release {
     color: #1a1a14;
     font-family: 'Poppins', sans-serif;
-    font-size: clamp(1.6rem, 2.4vw, 2.1rem);
+    font-size: clamp(1.5rem, 2.2vw, 2rem);
     font-weight: 600;
     line-height: 1.15;
-    letter-spacing: -0.5px;
-    margin: 0 0 28px 0;
+    letter-spacing: -0.4px;
+    margin: 0;
+}
+
+.hero-left-bottom {
+    position: absolute;
+    left: 32px;
+    bottom: 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+    z-index: 3;
+    animation: fadeInUp 0.8s ease 0.2s both;
 }
 
 .hero-corner-bottom {
     position: absolute;
-    right: 56px;
-    bottom: 40px;
+    right: 40px;
+    bottom: 36px;
     text-align: right;
     z-index: 3;
     animation: fadeInUp 0.8s ease 0.3s both;
@@ -404,27 +406,64 @@ a {
     border: 1px solid rgba(74, 140, 94, 0.12);
 }
 
-/* Spotify button in hero */
+/* Spotify button in hero - matches stats badge style (white pill with green text) */
 .hero-spotify-btn {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
-    padding: 12px 22px;
-    background: linear-gradient(135deg, #4A8C5E, #5A9E6A);
-    color: white;
+    gap: 8px;
+    padding: 10px 18px;
+    background: #FFFFFF;
+    color: #2F6B42;
     font-family: 'Poppins', sans-serif;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     font-weight: 600;
-    border-radius: 14px;
+    border-radius: 12px;
     text-decoration: none;
-    box-shadow: 0 4px 18px rgba(74, 140, 94, 0.3);
+    box-shadow: 0 4px 18px rgba(38, 36, 28, 0.1);
+    border: 1px solid rgba(74, 140, 94, 0.15);
     transition: all 0.3s ease;
     white-space: nowrap;
 }
 
 .hero-spotify-btn:hover {
+    background: #F7FAF2;
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(74, 140, 94, 0.45);
+    box-shadow: 0 8px 25px rgba(38, 36, 28, 0.15);
+}
+
+/* Scroll Indicator (animierte Linie unter Hero/Nav) */
+.scroll-indicator-wrap {
+    display: flex;
+    justify-content: center;
+    padding: 24px 0;
+    background: var(--bg);
+    position: relative;
+    z-index: 1;
+}
+
+.scroll-line {
+    width: 2px;
+    height: 44px;
+    background: rgba(38, 36, 28, 0.1);
+    border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+}
+
+.scroll-line::after {
+    content: '';
+    position: absolute;
+    top: -44px;
+    left: 0;
+    width: 100%;
+    height: 44px;
+    background: linear-gradient(to bottom, transparent, #4A8C5E, #6AB87A);
+    animation: scrollDown 2s ease-in-out infinite;
+}
+
+@keyframes scrollDown {
+    0% { top: -44px; }
+    100% { top: 44px; }
 }
 
 .stat {
