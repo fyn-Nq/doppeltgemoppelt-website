@@ -39,7 +39,6 @@
 
 html {
     scroll-behavior: smooth;
-    scroll-padding-top: 80px;
     overflow-x: clip;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
