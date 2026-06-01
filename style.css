@@ -40,7 +40,7 @@
 html {
     scroll-behavior: smooth;
     scroll-padding-top: 80px;
-    overflow-x: hidden;
+    overflow-x: clip;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -51,7 +51,7 @@ body {
     color: var(--text);
     line-height: 1.6;
     width: 100%;
-    overflow-x: hidden;
+    overflow-x: clip;
 }
 
 body.nav-shrink {
@@ -792,7 +792,7 @@ a {
 
 /* --- Episodes Section --- */
 .episodes {
-    background: linear-gradient(180deg, transparent, rgba(90, 122, 90, 0.03), transparent);
+    background: transparent;
 }
 
 .episodes-grid {
@@ -1037,7 +1037,7 @@ a {
 
 /* --- Kontakt Section --- */
 .kontakt {
-    background: linear-gradient(135deg, rgba(74, 140, 94, 0.06), rgba(150, 200, 130, 0.04));
+    background: transparent;
 }
 
 .kontakt-intro {
