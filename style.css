@@ -38,6 +38,8 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-snap-type: y proximity;
+    scroll-padding-top: 100px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -133,7 +135,7 @@ a {
     left: 0;
     right: 0;
     z-index: 1000;
-    padding: 14px 0;
+    padding: 20px 0 24px 0;
     background: rgba(247, 250, 242, 0.95);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
@@ -300,7 +302,7 @@ a {
 .hero {
     position: relative;
     width: 100%;
-    height: calc(100vh - 88px);
+    height: calc(100vh - 100px);
     min-height: 580px;
     overflow: hidden;
     display: block;
@@ -678,7 +680,17 @@ a {
 .section {
     position: relative;
     z-index: 1;
-    padding: 100px 0;
+    padding: 80px 0;
+    min-height: calc(100vh - 100px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    scroll-snap-align: start;
+    scroll-snap-stop: normal;
+}
+
+.hero {
+    scroll-snap-align: start;
 }
 
 .section-header {
