@@ -1667,17 +1667,18 @@ body:has(.modal-overlay.active) .bg-blobs {
         bottom: auto;
         left: 0;
         text-align: center;
-        padding: 28px 24px 16px;
+        padding: 0 24px 28px;
+        margin-top: auto;
         z-index: 2;
         max-width: 100%;
     }
     .hero-title-cover {
         text-align: center;
-        font-size: clamp(3rem, 13vw, 5rem);
+        font-size: clamp(2.6rem, 12vw, 4.4rem);
         text-shadow: none;
         color: #2F6B42;
         line-height: 0.95;
-        margin-bottom: 6px;
+        margin-bottom: 4px;
     }
     .hero-title-cover span {
         display: block;
@@ -1688,16 +1689,16 @@ body:has(.modal-overlay.active) .bg-blobs {
         margin: 0;
     }
 
-    /* Spotify-Button + Stats + Release-Text gestapelt zentriert unter Title */
+    /* Spotify-Button + Stats + Release-Text direkt unter dem Bild */
     .hero-left-bottom {
         position: relative;
         left: auto;
         bottom: auto;
-        margin-top: auto;
-        margin-bottom: 24px;
+        margin-top: 22px;
+        margin-bottom: 0;
         padding: 0 24px;
         align-items: center;
-        gap: 14px;
+        gap: 12px;
         z-index: 2;
     }
     .hero-spotify-btn {
