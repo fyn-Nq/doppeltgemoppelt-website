@@ -37,9 +37,8 @@
 }
 
 html {
-    scroll-behavior: smooth;
-    scroll-snap-type: y proximity;
-    scroll-padding-top: 100px;
+    height: 100%;
+    overflow: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -48,13 +47,14 @@ body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     background: var(--bg);
     color: var(--text);
-    overflow-x: hidden;
     line-height: 1.6;
     width: 100%;
-}
-
-html {
+    height: 100vh;
+    overflow-y: auto;
     overflow-x: hidden;
+    scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
+    scroll-padding-top: 88px;
 }
 
 .container {
@@ -135,7 +135,10 @@ a {
     left: 0;
     right: 0;
     z-index: 1000;
-    padding: 20px 0 24px 0;
+    height: 88px;
+    display: flex;
+    align-items: center;
+    padding: 10px 0 22px 0;
     background: rgba(247, 250, 242, 0.95);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
@@ -302,7 +305,7 @@ a {
 .hero {
     position: relative;
     width: 100%;
-    height: calc(100vh - 100px);
+    height: calc(100vh - 88px);
     min-height: 580px;
     overflow: hidden;
     display: block;
@@ -680,17 +683,20 @@ a {
 .section {
     position: relative;
     z-index: 1;
-    padding: 80px 0;
-    min-height: calc(100vh - 100px);
+    padding: 60px 0;
+    height: calc(100vh - 88px);
+    min-height: calc(100vh - 88px);
     display: flex;
     flex-direction: column;
     justify-content: center;
     scroll-snap-align: start;
-    scroll-snap-stop: normal;
+    scroll-snap-stop: always;
+    overflow: hidden;
 }
 
 .hero {
     scroll-snap-align: start;
+    scroll-snap-stop: always;
 }
 
 .section-header {
