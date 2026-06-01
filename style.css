@@ -691,6 +691,7 @@ a {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    scroll-margin-top: var(--nav-h);
 }
 
 
