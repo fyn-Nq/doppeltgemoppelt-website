@@ -23,13 +23,18 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Navigation Scroll Effect ---
     const nav = document.getElementById('nav');
 
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
+    const handleScroll = () => {
+        const y = document.body.scrollTop || window.scrollY || 0;
+        if (y > 60) {
             nav.classList.add('scrolled');
+            document.body.classList.add('nav-shrink');
         } else {
             nav.classList.remove('scrolled');
+            document.body.classList.remove('nav-shrink');
         }
-    });
+    };
+    document.body.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('scroll', handleScroll, { passive: true });
 
     // --- Mobile Menu Toggle ---
     const navToggle = document.getElementById('navToggle');

@@ -11,6 +11,7 @@
 }
 
 :root {
+    --nav-h: 80px;
     --primary: #3D7A50;
     --primary-light: #2F6B42;
     --primary-dark: #255536;
@@ -53,8 +54,12 @@ body {
     overflow-y: auto;
     overflow-x: hidden;
     scroll-behavior: smooth;
-    scroll-snap-type: y mandatory;
-    scroll-padding-top: 88px;
+    scroll-snap-type: y proximity;
+    scroll-padding-top: var(--nav-h);
+}
+
+body.nav-shrink {
+    --nav-h: 58px;
 }
 
 .container {
@@ -135,10 +140,11 @@ a {
     left: 0;
     right: 0;
     z-index: 1000;
-    height: 88px;
+    height: var(--nav-h);
     display: flex;
     align-items: center;
-    padding: 10px 0 22px 0;
+    padding: 0;
+    transition: height 0.35s ease, background 0.35s ease, box-shadow 0.35s ease;
     background: rgba(247, 250, 242, 0.95);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
@@ -148,7 +154,6 @@ a {
 
 .nav.scrolled {
     box-shadow: 0 2px 20px rgba(38, 36, 28, 0.1);
-    padding: 10px 0;
 }
 
 .nav-inner {
@@ -305,8 +310,9 @@ a {
 .hero {
     position: relative;
     width: 100%;
-    height: calc(100vh - 88px);
+    height: calc(100vh - var(--nav-h));
     min-height: 580px;
+    transition: height 0.35s ease;
     overflow: hidden;
     display: block;
     padding: 0;
@@ -684,14 +690,14 @@ a {
     position: relative;
     z-index: 1;
     padding: 60px 0;
-    height: calc(100vh - 88px);
-    min-height: calc(100vh - 88px);
+    height: calc(100vh - var(--nav-h));
+    min-height: calc(100vh - var(--nav-h));
     display: flex;
     flex-direction: column;
     justify-content: center;
     scroll-snap-align: start;
-    scroll-snap-stop: always;
     overflow: hidden;
+    transition: height 0.35s ease, min-height 0.35s ease;
 }
 
 .hero {
