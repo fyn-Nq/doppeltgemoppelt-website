@@ -54,7 +54,6 @@ body {
     overflow-y: auto;
     overflow-x: hidden;
     scroll-behavior: smooth;
-    scroll-snap-type: y proximity;
     scroll-padding-top: var(--nav-h);
 }
 
@@ -157,12 +156,14 @@ a {
 }
 
 .nav-inner {
+    width: 100%;
     max-width: 100%;
     margin: 0;
     padding: 0 40px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 40px;
 }
 
 .nav-logo {
@@ -695,15 +696,10 @@ a {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    scroll-snap-align: start;
     overflow: hidden;
     transition: height 0.35s ease, min-height 0.35s ease;
 }
 
-.hero {
-    scroll-snap-align: start;
-    scroll-snap-stop: always;
-}
 
 .section-header {
     margin-bottom: 60px;
