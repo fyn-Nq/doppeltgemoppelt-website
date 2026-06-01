@@ -780,7 +780,7 @@ a {
 /* --- Hosts Themes Paragraph (under host cards) --- */
 .hosts-themes {
     max-width: 800px;
-    margin: 60px auto 0;
+    margin: 20px auto 60px;
     text-align: center;
 }
 
