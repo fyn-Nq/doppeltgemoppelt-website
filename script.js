@@ -24,8 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const nav = document.getElementById('nav');
 
     const handleScroll = () => {
-        const y = document.body.scrollTop || window.scrollY || 0;
-        if (y > 60) {
+        if (window.scrollY > 60) {
             nav.classList.add('scrolled');
             document.body.classList.add('nav-shrink');
         } else {
@@ -33,7 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
             document.body.classList.remove('nav-shrink');
         }
     };
-    document.body.addEventListener('scroll', handleScroll, { passive: true });
     window.addEventListener('scroll', handleScroll, { passive: true });
 
     // --- Mobile Menu Toggle ---
