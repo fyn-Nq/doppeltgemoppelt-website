@@ -77,7 +77,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const target = document.querySelector(anchor.getAttribute('href'));
             if (target) {
                 e.preventDefault();
-                const offset = 80;
+                const navH = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 80;
+                const offset = document.body.classList.contains('nav-shrink') ? 58 : navH;
                 const top = target.getBoundingClientRect().top + window.scrollY - offset;
                 window.scrollTo({ top, behavior: 'smooth' });
             }
