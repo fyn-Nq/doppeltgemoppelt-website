@@ -1452,7 +1452,7 @@ a {
     position: fixed;
     inset: 0;
     z-index: 2000;
-    background: rgba(38, 36, 28, 0.55);
+    background: rgba(20, 22, 16, 0.78);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1460,6 +1460,11 @@ a {
     pointer-events: none;
     transition: opacity 0.3s ease;
     padding: 20px;
+}
+
+body:has(.modal-overlay.active) .bg-blobs {
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 .modal-overlay.active {
