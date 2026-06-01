@@ -23,8 +23,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Navigation Scroll Effect ---
     const nav = document.getElementById('nav');
 
+    const heroEl = document.getElementById('hero');
     const handleScroll = () => {
-        if (window.scrollY > 60) {
+        const threshold = heroEl ? Math.max(0, heroEl.offsetHeight - 40) : 60;
+        if (window.scrollY >= threshold) {
             nav.classList.add('scrolled');
             document.body.classList.add('nav-shrink');
         } else {
@@ -33,6 +35,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', handleScroll, { passive: true });
+    handleScroll();
 
     // --- Mobile Menu Toggle ---
     const navToggle = document.getElementById('navToggle');
