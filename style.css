@@ -1627,9 +1627,9 @@ body:has(.modal-overlay.active) .bg-blobs {
     .hero {
         position: relative;
         height: auto;
-        min-height: 100dvh;
+        min-height: calc(100dvh - 80px);
         max-height: none;
-        padding: 0 0 28px;
+        padding: 0 0 24px;
         overflow: hidden;
         display: flex;
         flex-direction: column;
