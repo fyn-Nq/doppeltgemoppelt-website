@@ -1626,23 +1626,23 @@ body:has(.modal-overlay.active) .bg-blobs {
     /* --- HERO: neues Mobile-Layout (Bild oben, Text drunter, gestapelt) --- */
     .hero {
         position: relative;
-        height: 100dvh;
-        min-height: 600px;
-        max-height: 900px;
-        padding: 0;
+        height: auto;
+        min-height: 0;
+        max-height: none;
+        padding: 0 0 28px;
         overflow: hidden;
         display: flex;
         flex-direction: column;
     }
 
-    /* Bild oben, kompakt mit grünem Rahmen — ~28% der Hero-Höhe */
+    /* Bild oben, kompakt mit grünem Rahmen */
     .hero-bg-photo {
         position: relative;
         top: 0;
         left: 50%;
         transform: translateX(-50%);
         width: calc(100% - 32px);
-        height: 28%;
+        height: 200px;
         max-width: 100%;
         aspect-ratio: auto;
         max-height: none;
@@ -1668,8 +1668,8 @@ body:has(.modal-overlay.active) .bg-blobs {
         left: 0;
         text-align: center;
         padding: 0 24px;
-        margin-top: 28px;
-        margin-bottom: auto;
+        margin-top: 24px;
+        margin-bottom: 0;
         z-index: 2;
         max-width: 100%;
     }
