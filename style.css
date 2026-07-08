@@ -1031,7 +1031,20 @@ a {
     font-family: 'Poppins', sans-serif;
     font-size: 1.5rem;
     font-weight: 700;
-    margin-bottom: 12px;
+    margin-bottom: 4px;
+}
+
+.host-mail {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--primary-light);
+    margin-bottom: 16px;
+    word-break: break-word;
+    transition: color 0.2s ease;
+}
+
+.host-mail:hover {
+    color: var(--primary);
 }
 
 .host-card p {
