@@ -785,8 +785,8 @@ a {
 /* --- Hosts Themes Paragraph (under host cards) --- */
 .hosts-themes {
     max-width: 800px;
-    margin: 20px auto 60px;
-    text-align: center;
+    margin: 20px 0 60px;
+    text-align: left;
 }
 
 .hosts-themes p {
