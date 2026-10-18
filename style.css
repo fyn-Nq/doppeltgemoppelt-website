@@ -333,16 +333,6 @@ a {
     box-shadow: none;
 }
 
-.hero-overlay {
-    position: absolute;
-    inset: 0;
-    background:
-        radial-gradient(ellipse at 85% 75%, rgba(220, 230, 200, 0.55), transparent 55%),
-        radial-gradient(ellipse at 10% 90%, rgba(220, 230, 200, 0.45), transparent 50%);
-    z-index: 1;
-    pointer-events: none;
-}
-
 .hero-stats-row {
     display: flex;
     align-items: center;
@@ -373,7 +363,7 @@ a {
     animation: fadeInUp 0.8s ease 0.2s both;
 }
 
-.hero-corner-bottom {
+.hero-title-wrap {
     position: absolute;
     right: 40px;
     bottom: 36px;
@@ -542,7 +532,7 @@ a {
     .hero-stats-row {
         gap: 12px;
     }
-    .hero-corner-bottom {
+    .hero-title-wrap {
         position: relative;
         right: 0;
         bottom: 0;
@@ -575,6 +565,121 @@ a {
     .hero-spotify-btn {
         font-size: 0.85rem;
         padding: 10px 16px;
+    }
+}
+
+/* ========================================
+   HERO DESKTOP (>900px) — Layout nach Canva-Vorlage
+   Duo-Foto ohne Overlay, Titel oben rechts, unten links
+   Release-Text + Badge (Stats + grüner Spotify-Button).
+   Nur Desktop: Mobile (<=900px) bleibt davon unberührt.
+   ======================================== */
+@media (min-width: 901px) {
+    /* Bildausschnitt wie in Canva: sichtbar ist Quellbild-Höhe 31–781px (Köpfe bis Knie).
+       Box = 1066/750 = 142% der Hero-Höhe, um 31/750 = 4% nach oben versetzt.
+       Auf sehr breiten Screens greift object-fit (oben verankert) → Köpfe bleiben drin. */
+    .hero-bg-photo {
+        top: -4%;
+        bottom: auto;
+        height: 142%;
+        object-position: 50% 0;
+    }
+
+    .hero-title-wrap {
+        top: 18%;
+        right: 1.6vw;
+        bottom: auto;
+    }
+    .hero-title-cover {
+        font-size: clamp(3rem, 6vw, 7.5rem);
+        font-weight: 700;
+        line-height: 0.98;
+        letter-spacing: -0.5px;
+        color: #476C37;
+        text-shadow: none;
+        margin: 0;
+    }
+    .hero-tagline {
+        color: #111;
+        font-size: clamp(1.1rem, 1.85vw, 2rem);
+        font-weight: 700;
+        letter-spacing: 0;
+        margin-top: 0.75em;
+    }
+
+    .hero-left-bottom {
+        left: 4.5vw;
+        bottom: 7%;
+        gap: 10px;
+    }
+    .hero-release {
+        color: #151515;
+        font-size: clamp(1.05rem, 1.55vw, 1.7rem);
+        font-weight: 400;
+        line-height: 1.25;
+        letter-spacing: -0.2px;
+        margin: 0;
+        text-shadow: none;
+    }
+
+    /* Kompakter als der alte Stats-Badge, damit er wie in Canva auf der Wand sitzt.
+       Transparent (Milchglas): das Foto scheint durch, Badge drängt sich nicht auf. */
+    .hero-badge {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 8px 8px 8px 16px;
+        background: rgba(255, 255, 255, 0.32);
+        -webkit-backdrop-filter: blur(10px) saturate(110%);
+        backdrop-filter: blur(10px) saturate(110%);
+        border: 1px solid rgba(255, 255, 255, 0.45);
+        border-radius: 14px;
+        box-shadow: 0 2px 10px rgba(38, 36, 28, 0.06);
+    }
+    /* Ohne Milchglas-Support etwas deckender, damit es lesbar bleibt */
+    @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+        .hero-badge {
+            background: rgba(245, 245, 240, 0.72);
+        }
+    }
+    .hero-stats {
+        gap: 12px;
+        padding: 0;
+        background: none;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+    }
+    .hero-badge .stat-number {
+        font-size: 1.2rem;
+        background: linear-gradient(135deg, #255536, #3D7A50);
+        -webkit-background-clip: text;
+        background-clip: text;
+    }
+    .hero-badge .stat-label {
+        font-size: 0.58rem;
+        color: #4A473D;
+    }
+    .hero-badge .stat-insta-icon svg {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+    .hero-badge .stat-divider {
+        height: 26px;
+        background: rgba(38, 36, 28, 0.2);
+    }
+    /* gedecktes Grün statt leuchtendem Verlauf, kein Glow */
+    .hero-spotify-btn {
+        padding: 10px 16px;
+        font-size: 0.82rem;
+        background: rgba(47, 107, 66, 0.88);
+        color: #FFFFFF;
+        border: none;
+        box-shadow: none;
+    }
+    .hero-spotify-btn:hover {
+        background: rgba(37, 85, 54, 0.95);
+        box-shadow: 0 4px 12px rgba(38, 36, 28, 0.15);
     }
 }
 
@@ -1009,22 +1114,19 @@ a {
     box-shadow: var(--shadow-glow);
 }
 
+/* Profilfoto: größerer Kreis wie in der Canva-Vorlage; wächst in das obere
+   Padding hinein, damit Name + Text an derselben Stelle bleiben */
 .host-avatar {
-    margin-bottom: 24px;
+    margin: -13px 0 4px;
+    line-height: 0;
 }
 
-.avatar-placeholder {
-    width: 90px;
-    height: 90px;
+.host-photo {
+    width: 124px;
+    height: 124px;
     border-radius: 50%;
-    background: var(--gradient-primary);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Poppins', sans-serif;
-    font-size: 2.2rem;
-    font-weight: 700;
-    color: white;
+    object-fit: cover;
+    background: var(--surface);
 }
 
 .host-card h3 {
@@ -1648,19 +1750,26 @@ body:has(.modal-overlay.active) .bg-blobs {
         flex-direction: column;
     }
 
-    /* Bild oben, kompakt mit grünem Rahmen */
+    /* Bild oben mit grünem Rahmen — eigener Mobile-Ausschnitt (picture/source),
+       volle Höhe ohne Beschnitt: beide sind komplett zu sehen */
+    .hero-photo {
+        display: contents;
+    }
     .hero-bg-photo {
         position: relative;
         top: 0;
         left: 50%;
         transform: translateX(-50%);
-        width: calc(100% - 32px);
-        height: 200px;
+        /* volle Breite; auf Tablet/Querformat max. ~45% Screenhöhe —
+           dann wird das Bild verkleinert (1.083 = Seitenverhältnis), nie beschnitten */
+        width: min(calc(100% - 32px), calc(min(45vh, 420px) * 1.083));
+        width: min(calc(100% - 32px), calc(min(45svh, 420px) * 1.083));
+        height: auto;
         max-width: 100%;
-        aspect-ratio: auto;
+        aspect-ratio: auto 1155 / 1066;
         max-height: none;
         object-fit: cover;
-        object-position: center 30%;
+        object-position: center;
         margin-top: 36px;
         border-radius: 16px;
         border: 2px solid rgba(47, 107, 66, 0.6);
@@ -1669,12 +1778,8 @@ body:has(.modal-overlay.active) .bg-blobs {
         z-index: 0;
     }
 
-    .hero-overlay {
-        display: none;
-    }
-
-    /* Title rechts-unten wird auf Mobile mittig unter dem Bild platziert */
-    .hero-corner-bottom {
+    /* Title (Desktop oben rechts) wird auf Mobile mittig unter dem Bild platziert */
+    .hero-title-wrap {
         position: relative;
         right: auto;
         bottom: auto;
@@ -1703,7 +1808,15 @@ body:has(.modal-overlay.active) .bg-blobs {
         margin: 0;
     }
 
-    /* Spotify-Button + Stats + Release-Text direkt unter dem Bild */
+    /* Spotify-Button + Stats + Release-Text direkt unter dem Bild.
+       Im HTML stecken Stats + Button im Desktop-Badge; hier wird der Badge
+       aufgelöst und die bisherige Mobile-Reihenfolge per order wiederhergestellt. */
+    .hero-badge {
+        display: contents;
+    }
+    .hero-spotify-btn { order: 1; }
+    .hero-stats { order: 2; }
+    .hero-release { order: 3; }
     .hero-left-bottom {
         position: relative;
         left: auto;
