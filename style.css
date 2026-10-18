@@ -575,13 +575,13 @@ a {
    Nur Desktop: Mobile (<=900px) bleibt davon unberührt.
    ======================================== */
 @media (min-width: 901px) {
-    /* Bildausschnitt wie in Canva: sichtbar ist Quellbild-Höhe 31–781px (Köpfe bis Knie).
-       Box = 1066/750 = 142% der Hero-Höhe, um 31/750 = 4% nach oben versetzt.
-       Auf sehr breiten Screens greift object-fit (oben verankert) → Köpfe bleiben drin. */
+    /* Bildausschnitt: sichtbar ist Quellbild-Höhe 31–861px (Köpfe bis Stiefel).
+       Box = 1066/830 = 128.4% der Hero-Höhe, um 31/830 = 3.7% nach oben versetzt.
+       Auf sehr breiten Screens greift object-fit (volle Bildbreite, oben verankert). */
     .hero-bg-photo {
-        top: -4%;
+        top: -3.7%;
         bottom: auto;
-        height: 142%;
+        height: 128.4%;
         object-position: 50% 0;
     }
 
